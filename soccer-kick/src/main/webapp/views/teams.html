@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/teams.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<style>
+.btn {
+	transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+.btn-info {
+	border-width: 2px;
+	font-weight: 400;
+	opacity: 0.8;
+	padding: 5px 16px;
+}
+</style>
+<title>Team List</title>
+</head>
+<body>
+	<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+	
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<h4 class="text-center">바로 검색하기</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<form role="form">
+						<div class="form-group">
+							<div class="input-group input-group-sm">
+								<input type="text" class="form-control search-data" placeholder="팀명을 입력하세요">
+								<span class="input-group-btn"> <a class="btn btn-success"
+									type="submit">검색</a>
+								</span>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="team-list"></div>
+
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div id="goTop" class="col-md-4 col-md-offset-2">
+					<a class="btn btn-block btn-default go-top">
+					<i class="fa fa-chevron-up fa-fw text-danger"></i>위로가기</a>
+				</div>
+				<div class="col-md-4">
+					<a id="load-list" href="#" class="btn btn-block btn-default">
+						<i class="glyphicon glyphicon-refresh text-danger"></i>더 불러오기...
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer" class="section"></footer>
+
+	<div class="modal fade" id="infoModal1" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h3 class="modal-title" id="myModalLabel">Ground Map</h3>
+				</div>
+				<div id="map" style="width: 100%; height: 400px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="applyModal1" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h3 class="modal-title" id="myModalLabel">Confirm</h3>
+				</div>
+				<!-- 요기 정보가 바뀌어야함! -->
+				<input id="atno" type="hidden" value=""/>
+				<div id="applyConfirm" class="modal-body">Apply for a member of Real Madrid ??</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default noBtn" data-dismiss="modal">No</button>
+					<!-- 예 를 눌렀을시 사용자의 정보와 팀의 고유 넘버?가 서버로 들어가서 팀에 저장되어야하고 사용자도 팀이 등록되어야함 -->
+					<button id="yesBtn" type="button" class="btn btn-primary">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="profileModal"></div>
+
+	<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/js/commons/socket.io.js"></script>
+	<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+	<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+	<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+	<script src="/soccer-kick/js/common.js"></script>
+	<script src="/soccer-kick/js/commons/alert.js"></script>
+	<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+	<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+	<script	src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+	<script src="http://apis.daum.net/maps/maps3.js?apikey=ef3f72b10f924dd622d250e332052626"></script>
+	<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+	<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+	<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="/soccer-kick/js/util/addrEvent.js"></script>
+	<script src="/soccer-kick/js/teams.js"></script>
+</body>
+</html>

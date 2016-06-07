@@ -1,0 +1,245 @@
+a:hover {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+#btns {
+	position: absolute;
+	top: 0px;
+	z-index: 50;
+}
+
+.notice {
+	padding: 15px;
+	margin-left: 11%;
+	margin-right: 10%;
+	background-color: #fafafa;
+	border-left: 6px solid #7f7f84;
+	margin-bottom: 10px;
+	-webkit-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+	box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+}
+
+.notice-sm {
+	padding: 10px;
+	font-size: 80%;
+}
+
+.notice-lg {
+	padding: 35px;
+	font-size: large;
+	border-color: #45ABCD;
+}
+
+.notice-success {
+	border-color: #80D651;
+	padding: 30px;
+}
+
+.notice-success>strong {
+	color: #80D651;
+}
+
+.notice-info {
+	border-color: #45ABCD;
+}
+
+.notice-info>strong {
+	color: #45ABCD;
+}
+
+.notice-warning {
+	border-color: #FEAF20;
+}
+
+.notice-warning>strong {
+	color: #FEAF20;
+}
+
+.notice-danger {
+	border-color: #d73814;
+	padding: 50px;
+}
+
+.input-group-addon a {
+	color: #454545;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #FFFFFF;
+}
+
+.blog-comment::before, .blog-comment::after, .blog-comment-form::before,
+	.blog-comment-form::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.blog-comment {
+	padding-left: 15%;
+	padding-right: 15%;
+}
+
+.blog-comment ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.blog-comment img {
+	opacity: 1;
+	filter: Alpha(opacity = 100);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.blog-comment img.avatar {
+	position: relative;
+	float: left;
+	margin-left: 0;
+	margin-top: 0;
+	width: 65px;
+	height: 65px;
+}
+
+.blog-comment .post-comments {
+	border: 1px solid #eee;
+	margin-bottom: 20px;
+	margin-left: 85px;
+	margin-right: 0px;
+	padding: 10px 20px;
+	position: relative;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+}
+
+.blog-comment .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.blog-comment ul.comments ul {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 85px;
+}
+
+.blog-comment-form {
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 40px;
+}
+
+.blog-comment h3, .blog-comment-form h3 {
+	margin-bottom: 40px;
+	font-size: 26px;
+	line-height: 30px;
+	font-weight: 800;
+}
+
+@import
+	"//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	;
+
+.box>.icon {
+	text-align: center;
+	position: relative;
+}
+
+.box>.icon>.image {
+	position: relative;
+	z-index: 2;
+	margin: auto;
+	width: 88px;
+	height: 88px;
+	border: 8px solid white;
+	line-height: 88px;
+	border-radius: 50%;
+	background: #428bca;
+	vertical-align: middle;
+}
+
+.box>.icon>.image>i {
+	font-size: 36px !important;
+	color: #fff !important;
+}
+
+.box>.icon:hover>.image>i {
+	color: white !important;
+}
+
+.box>.icon>.info {
+	margin-top: -24px;
+	background: rgba(0, 0, 0, 0.04);
+	border: 1px solid #e0e0e0;
+	padding: 15px 0 10px 0;
+}
+
+.box>.icon>.info>h3.title {
+	font-family: sans-serif !important;
+	font-size: 16px;
+	color: #222;
+	font-weight: 500;
+}
+
+.box>.icon>.info>p {
+	font-family: sans-serif !important;
+	font-size: 13px;
+	color: #666;
+	line-height: 1.5em;
+	margin: 20px;
+}
+
+.box>.icon:hover>.info>h3.title, .box>.icon:hover>.info>p, .box>.icon:hover>.info>.more>a
+	{
+	color: #222;
+}
+
+.box>.icon>.info>.more a {
+	font-family: sans-serif !important;
+	font-size: 12px;
+	color: #222;
+	line-height: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.box>.icon:hover>.info>.more>a {
+	color: #fff;
+	padding: 6px 8px;
+	background-color: #63B76C;
+}
+
+.box .space {
+	height: 30px;
+}
+
+.modal-header-primary {
+	color: #fff;
+	padding: 9px 15px;
+	border-bottom: 1px solid #eee;
+	background-color: #428bca;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}

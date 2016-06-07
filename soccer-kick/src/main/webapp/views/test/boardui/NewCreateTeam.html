@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/soccer-kick/lib/jquery/jquery.min.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<!-- <script src="../Pagination/jquery.easyPaginate.js" type="text/javascript"></script> -->
+
+<!-- include libries(jQuery, bootstrap, fontawesome) -->
+<link rel="stylesheet" href="/soccer-kick/lib/bootstrap/css/bootstrap.css">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+<style type="text/css"> 
+<!-- Search Icon -->
+input[type=search] {
+	background: #ededed
+		url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
+		no-repeat 8px center;
+	padding: 9px 10px 9px 32px;
+}
+
+<!-- Image Upload -->
+
+section{width:253px; margin:0 auto;}
+#img{max-height:200px; max-width:253px;}
+.btn{
+  font-weight: bold;
+  text-decoration:none;
+  text-align:center;
+  margin:1px 0;
+}
+#file{display:none;}
+
+</style>
+
+<script type="text/javascript">
+<!-- Image Upload-->
+$(document).ready(function () {
+	
+var img = document.getElementById('img');
+var noimage = img.src;	
+  
+function handleFileSelect(evt) {
+			var file = evt.target.files[0]; // FileList object, files[0] is your file
+			console.log(file);		
+			img.src = window.URL.createObjectURL(file);		
+}
+
+document.getElementById('file').addEventListener('change', handleFileSelect, false);
+		
+			document.querySelector('#removephoto').addEventListener('click',   function(e) {		
+						document.getElementById('file').value="";
+						img.src=noimage;
+						e.preventDefault();
+  });					
+document.querySelector('#img').addEventListener('click',           function(e) {	
+						performClick(document.getElementById('file'));
+						e.preventDefault();
+  });			document.querySelector('#addphoto').addEventListener('click',     function(e) {		
+						performClick(document.getElementById('file'));
+						e.preventDefault();
+  });	
+});
+			
+function performClick(node) {			
+		  	var evt = document.createEvent("MouseEvents");
+			  evt.initEvent("click", true, false);
+		 	 node.dispatchEvent(evt);
+}
+
+
+
+</script>
+</head>
+<body>
+<h1>New Create Team</h1>
+<hr />
+	<form action="" class="form-horizontal" role="form">
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-3 text-center">
+				<section>
+ 		 <img src="http://www.randomlengthsnews.com/wp-content/themes/gonzo/images/no-image-blog-one.png" id="img">
+ 		 	<div class="btn-group" role="group">
+  			<a id="addphoto" href="#" class="btn btn-primary" data-toggle="button" role="button">등록</a>
+ 			 <a id="removephoto" href="#" class="btn btn-primary" data-toggle="button">삭제</a>   
+ 		 	</div>
+				</section>
+			<input type="file" name="file" id="file" accept="image/*;capture=camera" capture="camera" />
+				</div>
+				
+				<div class="col-md-offset-1 col-md-5">
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="inputTeam" class="control-label">팀명</label>
+						</div>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputTeam" placeholder="TeamName" />
+							</div>
+					</div>		
+					
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="inputArea" class="control-label">주소</label>
+						</div>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputArea" placeholder="Area" />
+							</div>
+					</div>		
+					
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="inputPeople" class="control-label">인원</label>
+						</div>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputPeople" placeholder="People" />
+							</div>
+					</div>		
+					
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="inputLeader" class="control-label">리더</label>
+						</div>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputLeader" placeholder="Leader" />
+							</div>
+					</div>		
+					<div class="col-offset-md-2 col-md-12">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="search" class="form-control" placeholder="Search" />
+							<span class="input-group-btn">
+							 <a class="btn btn-primary" type="submit" style="font-weight: bold">입력</a>
+							</span>
+						</div>
+					</div>
+					</div>
+					
+						<div class="form-group">
+						<div class="col-sm-12">
+						<ul class="list-group"> 
+						<li class="list-group-item list-group-item-info" style="color: black; font-weight: bold; background-color: #84F3F5">구성원 명단</li>
+						<li class="list-group-item">1</li>
+						<li class="list-group-item">2</li>
+						<li class="list-group-item">3</li>
+						<li class="list-group-item">4</li>
+						<li class="list-group-item">5</li>
+						<li class="list-group-item">6</li>
+						</ul>
+					</div>
+						</div>
+					
+					<div class="form-group">
+					<div class="col-sm-12">
+						<textarea name="content" id="content" class="form-control" rows="6"></textarea>
+						<a class="btn btn-block btn-primary" style="font-weight: bold;" type="button">등록</a>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</body>
+</html>

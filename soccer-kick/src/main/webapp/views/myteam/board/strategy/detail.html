@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Strategy Board</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/myteam/board/strategy/thumbnail-slider.css" rel="stylesheet" type="text/css" />
+<link href="/soccer-kick/css/myteam/board/strategy/ninja-slider.css" rel="stylesheet" type="text/css" />
+<link href="/soccer-kick/css/commons/btnPost.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/myteam/board/strategy/detail.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<!-- <script src="/soccer-kick/js/myteam/board/strategy/thumbnail-slider.js" type="text/javascript"></script>
+<script src="/soccer-kick/js/myteam/board/strategy/ninja-slider.js" type="text/javascript"></script> -->
+</head>
+<body>
+<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+
+<div id='ninja-slider'>
+       <div>
+           <div class="slider-inner">
+               <ul id="slideList"></ul>
+               <div class="fs-icon" title="Expand/Close"></div>
+           </div>
+           <div id="thumbnail-slider">
+               <div class="inner">
+                   <ul id="thumbList"></ul>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <div id="btns">
+	<a id="playBtn" class="btn btn-success" style="box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75); border-radius:0px; background-color: gray;">Play</a>
+   	<a id="stopBtn" class="btn btn-success" style="box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75); border-radius:0px; background-color: gray;">Stop</a>
+   </div>
+   
+   <div class="section">
+   	<div class="container">
+   		<div class="notice notice-lg">
+        	<strong id="btitle">전략명&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</strong>
+	    </div>
+	    <div class="notice notice-success">
+	        <span class="glyphicon glyphicon-user"></span>BY <a id="bwriter"></a>                                                 
+			| <span class="glyphicon glyphicon-calendar"> </span><a id="bmodDate"></a>											  
+				| <span class="glyphicon glyphicon-comment"></span><a id="bcommentCnt"></a>                              
+					| <i class="icon-share"></i><a id="bviewCnt"></a>																	      
+	    </div>
+	    <div class="notice notice-danger">
+	        <strong id="bcontent"></strong>
+	    </div>
+   	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<td><span style='float: right'>
+							<button type="button" id="list" class="btn btn-info">목록</button>
+							<button type="button" id="modify" data-toggle="modal" data-target="#updateForm" class="btn btn-info">수정</button>
+							<button type="button" id="delete" class="btn btn-info">삭제</button>
+							<button type="button" id="write" class="btn btn-info">글쓰기</button>
+						</span></td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+   </div>
+<div class="container bootstrap snippet">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="blog-comment">
+				<h3 class="text-success">Comments</h3>
+				<form role="form" onsubmit="return cmtAdd();">
+				<div class="input-group">
+					<input id="cmtInputBox" class="form-control" placeholder="Add a comment"
+						type="text"> <span class="input-group-addon"> <button
+						type="submit"><i class="fa fa-edit"></i></button>
+					</span>
+				</div>
+				</form>
+				<br>
+				<ul class="comments"></ul>
+			</div>
+			<div id="goTop" class="col-md-4 col-md-offset-2">
+				<a class="btn btn-block btn-default go-top">
+				<i class="fa fa-chevron-up fa-fw text-danger"></i>위로가기</a>
+			</div>
+			<div class="col-md-4">
+				<a id="load-list" class="btn btn-block btn-default">
+					<i class="glyphicon glyphicon-refresh text-danger"></i>더 불러오기...
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<footer id="footer" class="section"></footer>
+<div class="modal fade" id="profileModal"></div>
+<div class="modal fade" id="updateForm" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-primary">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">×</button>
+				<h1>
+					<i class="fa fa-bar-chart-o"></i>전략 게시글 수정
+				</h1>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<div class="col-sm-3 text-right">
+							<label for="mBtitle" class="control-label"> <i
+								class="fa fa-fw fa-lg fa-magic"></i>전략명
+							</label>
+						</div>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="mBtitle"
+								placeholder="전략명">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-3 text-right">
+							<label class="control-label"> <i
+								class="fa fa-fw fa-lg fa-align-right"></i>내용
+							</label>
+						</div>
+						<div class="col-sm-9">
+							<textarea id="mBcontent" class="form-control2" rows="10" placeholder="내용"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a id="modalModBtn" class="btn btn-primary pull-left">수정</a>
+				<button type="button" class="btn btn-default pull-left"
+					data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/commons/socket.io.js"></script>
+<script src="/soccer-kick/js/common.js"></script>
+<script src="/soccer-kick/js/myteam/board/strategy/thumbnail-slider.js" type="text/javascript"></script>
+<script src="/soccer-kick/js/myteam/board/strategy/ninja-slider.js" type="text/javascript"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/soccer-kick/js/commons/alert.js"></script>
+<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script src="/soccer-kick/js/myteam/board/strategy/detail.js"></script>
+</body>
+</html>

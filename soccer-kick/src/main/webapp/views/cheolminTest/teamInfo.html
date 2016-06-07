@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/teams/teams.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/profileModal/profileModal.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/userForm/userForm.css" rel="stylesheet" type="text/css">
+<link href="teamInfo/css/member.css" rel="stylesheet" type="text/css">
+<title>팀 정보</title>
+</head>
+<body>
+<div class="my-header navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar-ex-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"><span>PROJECT NAME</span></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="/soccer-kick/views/home/home.html"
+						style="text-decoration: none;">Home</a></li>
+					<li class="active"><a href="">Teams</a></li>
+					<li><a href="#">Create Team</a></li>
+					<li><a href="#">My Team</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> <img id="profileThumnail"
+							src="/soccer-kick/images/commons/baseUserIcon.png"
+							style="width: 15px; height: 15px;" />&nbsp; <strong>Username</strong>
+							<span class="glyphicon glyphicon-chevron-down"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												<img id="profileThumnail2"
+													src="/soccer-kick/images/commons/baseUserIcon.png"
+													style="width: 87px; height: 87px;" />
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>Username</strong>
+											</p>
+											<p class="text-left small">useremail@gmail.com</p>
+											<p class="text-left">
+												<a href="" class="btn btn-primary btn-block btn-sm"
+													data-toggle="modal" data-target="#profileModal">Show/Edit
+													Profile</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<p>
+												<a href="#" class="btn btn-danger btn-block">Log Out</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<img src="teamInfo/images/embl/Dynamic_FC.jpg" class="img-responsive img-rounded" style="height:290px; width:290px;">
+				</div>
+				<div class="col-md-6">
+					<h1>팀명</h1>
+					<h3>팀 소개</h3>
+					<p>우리팀은 ....
+					     강남역 비트캠프 8층 풋살장에서 연습을 하는 등...</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center">공격수</h1>
+					<p class="text-center">공격수 팀장 박지성 외 7명..</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" id="nav-tabs" role="tablist">
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center">수비수</h1>
+					<p class="text-center">수비수 팀장 박지성 외 7명..</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" id="nav-tabs" role="tablist">
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center">미드필더</h1>
+					<p class="text-center">미드필더 팀장 박지성 외 7명..</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" id="nav-tabs" role="tablist">
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center">골키퍼</h1>
+					<p class="text-center">골키퍼 팀장 박지성 외 7명..</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" id="nav-tabs" role="tablist">
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#anna" aria-controls="anna" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
+                            <img class="img-circle" src="teamInfo/images/member/drag avatar.jpg" />
+                        <h3 class="text-center">박지성</h3>
+						<p class="text-center">Developer</p>
+                        </a>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="map" style="width:100%; height:400px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>Team org name</h2>
+					<p>COPYRIGHT 2016 JAVA-77 TEAM ORG NAME. ALL COPYRIGHTS
+						RESERVED CONTACT BITCAMP Corp.</p>
+				</div>
+				<div class="col-sm-6">
+					<p class="text-info text-right">
+						<br> <br>
+					</p>
+					<div class="row">
+						<div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+							<a href="#"><i class="fa fa-3x fa-fw text-inverse fa-youtube"></i></a>
+							<a href="#"><i
+								class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i
+								class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 hidden-xs text-right">
+							<a href="#"><i class="fa fa-2x fa-fw fa-youtube"></i></a> <a
+								href="#"><i class="fa fa-2x fa-facebook fa-fw"></i></a> <a
+								href="#"><i class="fa fa-2x fa-fw fa-github"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/commons/header.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script	src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="//apis.daum.net/maps/maps3.js?apikey=452fa8d7ce9cb541e292d97f1c830aa3"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=452fa8d7ce9cb541e292d97f1c830aa3&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=452fa8d7ce9cb541e292d97f1c830aa3&libraries=services,clusterer"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script src="/soccer-kick/js/util/addrEvent.js"></script>	
+<script>
+	var container = document.getElementById('map');
+	
+	var options = {
+		center: new daum.maps.LatLng(33.450701, 126.570667)
+		,level: 3
+	};
+	
+	var map = new daum.maps.Map(container, options);
+	
+	var markerPosition = new daum.maps.LatLng(33.450701, 126.570667);
+	
+	var marker = new daum.maps.Marker({
+		position: markerPosition
+	});
+	
+	marker.setMap(map);
+</script>
+</body>
+</html>

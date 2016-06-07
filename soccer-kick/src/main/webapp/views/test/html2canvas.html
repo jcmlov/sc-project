@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="html2canvas.js"></script>	
+  <script>
+	function capture() { 
+		html2canvas($("#chart_div"), {
+			onrendered: function(canvas) { 
+				var img = canvas.toDataURL("image/png");
+				console.log(img); 
+				$("#target2").html('<img src=' + img + '>'); // capture 내용이 보여짐
+				//window.open(img); // 이미지를 윈도우 팝업으로..
+ 
+			}
+		}); 
+	} 
+	</script>
+</head>
+<body>
+	<div id="chart_div">dddddddd</div>
+	<input type="button" value="Take Screenshot Of Div" onclick="capture();" />
+	<div id="target2">
+	</div>
+</body>
+</html>

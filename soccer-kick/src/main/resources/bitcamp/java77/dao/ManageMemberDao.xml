@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.ManageMemberDao">
+	
+	
+	<!-- 팀 멤버 목록리스트 -->
+	<select id="selectTeamMemberList" resultType="member" parameterType="member">
+		select mno, mname, mpath, memail, mpno, mgender, mpass, mbase_addr as mbaseAddr, 
+			   mdet_addr as mdetAddr, mbirth, mleader_yn as mleaderYN, menter_yn as menterYN, mapply_yn as mapplyYn,
+			   mplay_cnt as mplayCnt, mgoal_cnt as mgoalCnt, msupport_cnt as msupportCnt, mloss_cnt as mlossCnt, mposname
+		  from member
+		where tno = #{tno}
+	</select>
+	
+	<!-- 입단신청자 목록 리스트 -->
+	<select id="selectTeamApplyList" resultType="member" parameterType="member">
+		select mno, mname, mpath, memail, mpno, mgender, mpass, mbase_addr as mbaseAddr, 
+			   mdet_addr as mdetAddr, mbirth, mleader_yn as mleaderYN, menter_yn as menterYN, mapply_yn as mapplyYn,
+			   mplay_cnt as mplayCnt, mgoal_cnt as mgoalCnt, msupport_cnt as msupportCnt, mloss_cnt as mlossCnt, mposname, mapply_tno as mapplyTno
+		  from member
+		where mapply_tno = #{tno}
+			and tno is null
+			and menter_yn = 'N'
+			and mapply_yn = 'Y'
+	</select>
+	
+	<!-- 팀멤버 상세 정보 조회 -->
+	<select id="selectTeamMember" resultType="member" parameterType="member">
+		select mno, mname, mpath, memail, mpno, mgender, mpass, mbase_addr as mbaseAddr, 
+			   mdet_addr as mdetAddr, mbirth, mleader_yn as mleaderYN, menter_yn as menterYN, mapply_yn as mapplyYn,
+			   mplay_cnt as mplayCnt, mgoal_cnt as mgoalCnt, msupport_cnt as msupportCnt, mloss_cnt as mlossCnt, mposname
+		  from member
+		where mno = #{mno}
+	</select>
+	
+	<update id="updateApply" parameterType="member">
+		update member
+		   set mapply_tno = #{mapplyTno},
+		   		menter_yn = 'Y',
+		   		mapply_yn = 'N'
+			   <if test="tno != 0">
+				   ,tno = #{tno}
+				   ,menter_yn = 'N'
+			   </if>
+		 where mno = #{mno}
+	</update>
+	
+	<!-- 팀승인시 팀원 +1 -->
+	<update id="updateTmemCnt" parameterType="team">
+		update team
+			set tmem_cnt = tmem_cnt + 1
+		 where tno = #{tno}
+	</update>
+	
+	<!-- 팀제명시 팀원 -1 -->
+	<update id="updateExTmemCnt" parameterType="team">
+		update team
+		set tmem_cnt = tmem_cnt - 1
+		where tno = #{tno}
+	</update>
+	
+	
+	<update id="updateTeamPosition" parameterType="member">
+		update member
+			  set mposname = #{mposname}
+		 where mno = #{mno}
+	</update>
+	
+	<update id="updateMemberPoint" parameterType="member">
+		update member
+			  set mgoal_cnt = #{mgoalCnt},
+			      msupport_cnt = #{msupportCnt},
+			      mloss_cnt = #{mlossCnt}
+		 where mno = #{mno}
+	</update>
+	
+	<update id="updateLocation" parameterType="team">
+		update team
+			  set tlatitude = #{tlatitude},
+			      tlongitude = #{tlongitude},
+			      tpoint = #{tpoint}
+		 where tno = #{tno}
+	</update>
+	
+	<update id="updateExpulsion" parameterType="member">
+		update member
+			set tno = null,
+				menter_yn = 'N',
+				mapply_yn = 'N',
+				menter_yn = 'N'
+		 where mno = #{mno}
+	</update>
+	
+	<select id="teamInfo" resultType="team">
+		select tno, tname, tepath, tmem_cnt as tmemCnt, tcontent, tpoint, tlatitude, tlongitude, 
+			   date_format(treg_date, '%y.%m.%d') as tregDate
+		  from team
+	</select>
+	
+</mapper>

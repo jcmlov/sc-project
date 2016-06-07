@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.MemberDao">
+	<select id="list" parameterType="int" resultType="member">
+		select *
+		  from member
+		 where tno = #{tno}
+	</select>
+	
+	<insert id="insert" parameterType="member">
+		insert into member (
+			mname, memail, mpno, mgender, mpass, mbase_addr, mdet_addr, mbirth, mposname, mleader_yn, menter_yn, mapply_yn
+		) values (
+			#{mname}, #{memail}, #{mpno}, #{mgender}, #{mpass}, #{mbaseAddr}, #{mdetAddr}, #{mbirth}, #{mposname}, 'N', 'N', 'N'
+		)
+	</insert>
+	
+	<select id="retrieve" resultType="member" parameterType="loginDto">
+		select tno, mno, mname, mpath, memail, mpno, mgender, mpass, mbase_addr as mbaseAddr, mapply_tno as mapplyTno,
+			   mdet_addr as mdetAddr, mbirth, mleader_yn as mleaderYN, menter_yn as menterYN, mapply_yn as mapplyYn,
+			   mplay_cnt as mplayCnt, mgoal_cnt as mgoalCnt, msupport_cnt as msupportCnt, mloss_cnt as mlossCnt, mposname
+		  from member
+		 where memail = #{memail} and mpass = #{mpass}
+	</select>
+	
+	<update id="updateProfile" parameterType="member">
+		update member
+		   set mpno = #{mpno}, mbase_addr = #{mbaseAddr}, 
+		   	   mdet_addr = #{mdetAddr}, mposname = #{mposname}
+		 where mno = #{mno}
+	</update>
+	
+	<update id="updatePhoto" parameterType="member">
+		update member
+		   set mpath = #{mpath}
+		 where mno = #{mno}
+	</update>
+	
+	<update id="updateApplyTno" parameterType="member">
+		update member
+		   set mapply_tno = #{mapplyTno}, mapply_yn = 'Y'
+		 where mno = #{mno}
+	</update>
+	
+</mapper>

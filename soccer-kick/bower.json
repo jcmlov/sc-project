@@ -1,0 +1,49 @@
+{
+	"name": "soccer-kick",
+	"homepage": "https://github.com/java77-final-project/web-project",
+	"description": "",
+	"main": "",
+	"moduleType": [],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"bootstrap": "~3.3.4",
+		"jquery": "2.0.3",
+		"jquery-ui": "1.10.4",
+		"blueimp-file-upload": "jquery-file-upload#^9.11.2",
+		"font-awesome" : "https://github.com/tdg5/font-awesome-bower.git/#v4.3.0",
+		"jquery-smooth-scroll" : "https://github.com/kswedberg/jquery-smooth-scroll.git",
+		"jquery-throttle-debounce" : "https://github.com/cowboy/jquery-throttle-debounce.git",
+		"interact" : "https://github.com/taye/interact.js.git",
+		"html2canvas" : "https://github.com/niklasvh/html2canvas.git",
+		"jscolor" : "https://github.com/EastDesire/jscolor.git",
+		"flexslider" : "https://github.com/woothemes/FlexSlider.git",
+		"masonry" : "4.0.0",
+		"imagesloaded" : "https://github.com/desandro/imagesloaded.git",
+		"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"
+	},
+	"install": {
+		"path": "src/main/webapp/lib",
+		"sources": {
+			"bootstrap": "bower_components/bootstrap/dist/**",
+      		"jquery": "bower_components/jquery/**",
+      		"blueimp-file-upload": "bower_components/blueimp-file-upload/**",
+      		"font-awesome": "bower_components/font-awesome/**",
+      		"jquery-smooth-scroll" : "bower_components/jquery-smooth-scroll/jquery.smooth-scroll.js",
+      		"jquery-throttle-debounce" : "bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js",
+      		"interact" : "bower_components/interact/dist/interact.js",
+      		"html2canvas" : "bower_components/html2canvas/build/html2canvas.js",
+      		"jscolor" : "bower_components/jscolor/jscolor.js",
+      		"flexslider" : "bower_components/flexslider/**",
+      		"masonry" : "bower_components/masonry/dist/**",
+      		"imagesloaded" : "bower_components/imagesloaded/imagesloaded.pkgd.min.js",
+      		"handlebars" : "bower_components/handlebars/index.js"
+		}
+	}
+}

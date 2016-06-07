@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<!-- <input type='file' id='file3'/>
+	<div id="test">버튼을 눌러봐~~~</div>
+	<button id="btn1">날 클릭하시오</button>
+	<button id="btn2">확인해보자</button>
+	<script src="../jquery-2.2.0.js"></script>
+	<script type= "text/javascript">
+		$("#btn1").click(function() {
+			var divTest = document.getElementById("test");
+			divTest.innerHTML = "<input type='file' id='file1' value='1.png'/>";
+		});
+		$("#btn2").click(function() {
+			alert($("#file1").val());
+		})
+	</script> -->
+
+	<a href="#" onclick="addFileField()">add file</a>
+	<ol id="uploads">
+		<li><input type=file name=file[] size=30 class=input2
+			onchange="addFileField()"></li>
+	</ol>
+
+	<script>
+		function addFileField() {
+			upload_list = document.getElementById('uploads');
+			alert(upload_list.innerHTML)
+
+			list_item = document.createElement("li");
+			file_field = document.createElement("input");
+			file_field.type = "file";
+			file_field.name = "file[]";
+			file_field.change = "addFileField();";
+
+			// file_field.class = "input2"; 
+			// file_field.style = "border:solid 1;"; 
+			file_field.size = 30;
+			list_item.appendChild(file_field);
+			upload_list.appendChild(list_item);
+		}
+	</script>
+
+</body>
+</html>

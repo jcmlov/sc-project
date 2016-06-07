@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.BoardDao">
+	<insert id="insert" parameterType="board">
+		insert into board (
+			tno, mno, btype, btitle, bcontent, breg_date, bmod_date, bview_cnt
+		) values (
+			#{tno}, #{mno}, #{btype}, #{btitle}, #{bcontent}, now(), now(), 0
+		)
+		<selectKey keyProperty="bno" order="AFTER" resultType="int">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertFile" parameterType="fileattach">
+		insert into fileattach (
+			bno, fori_name, freal_name, fpath, fthumb
+		) values (
+			#{bno}, #{foriName}, #{frealName}, #{fpath}, #{fthumb}
+		)
+	</insert>
+	
+	<select id="list" parameterType="boardDto" resultType="board">
+		select b.bno, b.tno, b.mno, b.btitle, bcontent, date_format(b.breg_date, '%y.%m.%d') as bregDate,
+			   date_format(b.bmod_date, '%y.%m.%d') as bmodDate, b.bview_cnt as bviewCnt, 
+			   m.mname as bwriter, m.mpath as bwriterPhotoPath,
+			   (select count(*) from comment where bno = b.bno) as bcommentCnt
+		  from board as b left join member as m
+		  	on b.mno = m.mno
+		 where b.tno = #{tno} and b.btype = #{btype}
+		 <if test="keyword != 'none'">
+		 	<choose>
+		 		<when test="category == 'TITLE'">
+		 			and b.btitle like #{keyword}
+		 		</when>
+		 		<when test="category == 'WRITER'">
+		 			and m.mname like #{keyword}
+		 		</when>
+		 		<when test="category == 'CONTENT'">
+		 			and b.bcontent like #{keyword}
+		 		</when>
+		 		<otherwise>
+		 			and b.btitle like #{keyword}
+		 			 or m.mname like #{keyword}
+		 			 or b.bcontent like #{keyword}
+		 		</otherwise>
+		 	</choose>
+		 </if>
+		 order by b.bno desc
+		 limit #{start}, #{howmany}
+	</select>
+	
+	<select id="selectBoardCount" parameterType="boardDto" resultType="int">
+		select count(*) 
+		  from board as b left join member as m
+		    on b.mno = m.mno
+		 where b.tno = #{tno} and b.btype = #{btype}
+		<if test="keyword != 'none'">
+		 	<choose>
+		 		<when test="category == 'TITLE'">
+		 			and b.btitle like #{keyword}
+		 		</when>
+		 		<when test="category == 'WRITER'">
+		 			and m.mname like #{keyword}
+		 		</when>
+		 		<when test="category == 'CONTENT'">
+		 			and b.bcontent like #{keyword}
+		 		</when>
+		 		<otherwise>
+		 			and b.btitle like #{keyword}
+		 			 or m.mname like #{keyword}
+		 			 or b.bcontent like #{keyword}
+		 		</otherwise>
+		 	</choose>
+		 </if>
+	</select>
+	
+	<select id="detail" parameterType="boardDto" resultType="board">
+		select b.bno, b.tno, b.mno, b.btitle, b.bcontent, date_format(b.breg_date, '%y.%m.%d') as bregDate,
+			   date_format(b.bmod_date, '%y.%m.%d') as bmodDate, b.bview_cnt as bviewCnt, 
+			   m.mname as bwriter, (select count(*) from comment where bno = b.bno) as bcommentCnt 
+		  from board as b left join member as m
+		  	on b.mno = m.mno
+		 where b.bno = #{bno} and b.btype = #{btype}
+	</select>
+	
+	<select id="fileList" parameterType="boardDto" resultType="fileattach">
+		select fno, bno, fori_name as foriName, freal_name as frealName, fpath, fthumb
+		  from fileattach
+		 where bno = #{bno}
+		 order by fno asc
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from board
+		 where bno = #{bno}
+	</delete>
+	
+	<delete id="deleteFileattach" parameterType="int">
+		delete from fileattach
+		 where bno = #{bno}
+	</delete>
+	
+	<update id="updateViewCnt" parameterType="int">
+		update board
+		   set bview_cnt = bview_cnt + 1
+		 where bno = #{bno}
+	</update>
+	
+	<update id="update" parameterType="board">
+		update board
+		   set btitle = #{btitle}, bcontent = #{bcontent}, bmod_date = now()
+		 where bno = #{bno}
+	</update>
+	
+</mapper>
+
+
+
+
+
+

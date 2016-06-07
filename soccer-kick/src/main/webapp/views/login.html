@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<title>로그인</title>
+</head>
+<body>
+	<div class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar-ex-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"><span class="text-primary">SK PLAN-IT</span></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+				<form id="signin" class="navbar-form navbar-right" role="form" onsubmit="return login();">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-user"></i>
+						</span> <input id="loginMemail" type="email" class="form-control" required="required" 
+									   name="loginMemail" placeholder="이메일">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-lock"></i>
+						</span> <input id="loginMpass" type="password" class="form-control" required="required"
+									   name="loginMpass" placeholder="비밀번호">
+					</div>
+					<input type="submit" class="btn btn-primary" value="로그인"/>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="height-set section">
+		<div class="background-image"
+			style="background-image: url('/soccer-kick/images/login/loginBody.jpg');"></div>
+		<div class="container">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section">
+								<div class="container">
+									<div class="row">
+										<div class="col-md-5 col-sm-offset-6">
+											<form id="signup" role="form" class="text" onsubmit="return memAdd();">
+												<div class="row myborder">
+													<h4 style="margin: initial; margin-bottom: 10px;">Sign
+														Up</h4>
+													<hr>
+													<div class="input-group margin-bottom-9" id="emailDupCheck">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-envelope mycolor"></i></span> <input
+															size="60" maxlength="255" class="form-control"
+															placeholder="이메일 주소" required="required"
+															name="memail" id="memail" type="email">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-user mycolor"></i></span> <input
+															size="60" maxlength="255" class="form-control"
+															required="required" placeholder="이름" name="mname"
+															id="mname" type="text">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-lock mycolor"></i></span> <input
+															size="60" maxlength="255" class="form-control"
+															required="required" placeholder="비밀번호" name="mpass"
+															id="mpass" type="password" pattern=".{8,}" 
+															title="At least 8 characters">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-lock mycolor"></i></span> <input
+															size="60" maxlength="255" class="form-control"
+															required="required" placeholder="비밀번호 확인"
+															name="mpassConfirm" id="mpassConfirm" type="password"
+															pattern=".{8,}" title="At least 8 characters">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-phone mycolor"></i></span> <input
+															size="60" maxlength="255" class="form-control"
+															placeholder="휴대폰 번호 ex) 000.0000.000"
+															required="required" name="mpno" id="mpno" type="text">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-gift mycolor"></i></span> <input
+															size="60" class="form-control" placeholder="Birth Day"
+															name="mbirth" required="required" value="2016-03-07"
+															min="1940-01-01" max="2016-03-03" id="mbirth" type="date">
+													</div>
+													<div class="input-group margin-bottom-9">
+														<input size="60" maxlength="255" class="form-control"
+															placeholder="주소" required="required"
+															name="mbaseAddr" id="mbaseAddr" type="text"> <span
+															class="input-group-addon"><button
+																id="searchAddrBtn"
+																class="glyphicon glyphicon-tag mycolor"></button></span>
+													</div>
+													<div class="input-group margin-bottom-9">
+														<input size="100" maxlength="255" class="form-control"
+															placeholder="상세주소" required="required"
+															name="mdetAddr" id="mdetAddr" type="text">
+													</div>
+													
+													<div class="form-group">
+														<div class="radio">
+															<label> <input type="radio" name="mposname"
+																id="mposname" value="FW" checked="checked">FW
+															</label> <label> <input type="radio" name="mposname"
+																id="mposname" value="MF">MF
+															</label> <label> <input type="radio" name="mposname"
+																id="mposname" value="DF">DF
+															</label> <label> <input type="radio" name="mposname"
+																id="mposname" value="PK">PK
+															</label>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="radio">
+															<label> <input type="radio" name="mgender"
+																id="mgender" value="M" checked="checked">남
+															</label> <label> <input type="radio" name="mgender"
+																id="mgender" value="F">여
+															</label>
+														</div>
+													</div>
+													
+													<div class="row">
+														<div class="col-md-12">
+															<input id="memAddBtn" class="btn btn-primary" type="submit" value="가입하기"/>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>SK PLAN-IT</h2>
+					<p>COPYRIGHT 2016 JAVA-77 SK PLAN-IT. ALL COPYRIGHTS
+						RESERVED CONTACT BITCAMP Corp.</p>
+				</div>
+				<div class="col-sm-6">
+					<p class="text-info text-right">
+						<br> <br>
+					</p>
+					<div class="row">
+						<div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+							<a href="#"><i class="fa fa-3x fa-fw text-inverse fa-youtube"></i></a>
+							<a href="#"><i
+								class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i
+								class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 hidden-xs text-right">
+							<a href="#"><i class="fa fa-2x fa-fw fa-youtube"></i></a> <a
+								href="#"><i class="fa fa-2x fa-facebook fa-fw"></i></a> <a
+								href="#"><i class="fa fa-2x fa-fw fa-github"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="/soccer-kick/js/common.js"></script>
+	<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="/soccer-kick/js/util/addrEvent.js"></script>
+	<script src="/soccer-kick/js/login.js"></script>
+	<script src="/soccer-kick/js/commons/alert.js"></script>
+</body>
+</html>

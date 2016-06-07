@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.TeamBoardDao">
+
+	<resultMap type="teamboard" id="boardMap">
+		<result column="breg_date" property="bregDate" />
+		<result column="bmod_date" property="bmodDate" />
+		<result column="bview_cnt" property="bviewCnt" />
+		<result column="fori_name" property="foriName"/>
+		<result column="freal_name" property="frealName"/>
+		<result column="fpath" property="fpath"/>		
+	</resultMap>
+	
+	<resultMap type="comment" id="commentMap">
+		<result column="creg_date" property="cregDate" />
+	</resultMap>
+	
+	<select id="teamBoardList" parameterType="boardDto" resultType="board">
+		SELECT BOARD.*
+		FROM (
+			SELECT
+				@ROWNUM:=@ROWNUM+1 rnum
+				,b.bno
+				,b.tno
+				,b.mno
+				,b.btitle
+				,bcontent
+				,date_format(b.breg_date, '%y.%m.%d') as bregDate
+				,date_format(b.bmod_date, '%y.%m.%d') as bmodDate, b.bview_cnt as bviewCnt
+				,m.mname as bwriter, m.mpath as bwriterPhotoPath
+				,(select count(*) from comment where bno = b.bno) as bcommentCnt
+			  FROM BOARD as b
+			  LEFT JOIN MEMBER AS m
+			  ON b.mno = m.mno
+			  ,(SELECT @ROWNUM:=0) TMP
+			  WHERE b.tno = #{tno} AND b.btype = #{btype}
+			 <if test="keyword != 'none'">
+			 	<choose>
+			 		<when test="category == 'TITLE'">
+			 			AND b.btitle LIKE #{keyword}
+			 		</when>
+			 		<when test="category == 'WRITER'">
+			 			AND m.mname LIKE #{keyword}
+			 		</when>
+			 		<when test="category == 'CONTENT'">
+			 			AND b.bcontent LIKE #{keyword}
+			 		</when>
+			 		<otherwise>
+			 			AND b.btitle LIKE #{keyword}
+			 			OR m.mname LIKE #{keyword}
+			 			OR b.bcontent LIKE #{keyword}
+			 		</otherwise>
+			 	</choose>
+			 </if>
+			 ORDER BY b.bno ASC) BOARD
+			 ORDER BY RNUM DESC
+			 LIMIT #{start}, #{howmany}
+	</select>
+	
+	<select id="selectTeamBoardCount" parameterType="boardDto" resultType="int">
+		select count(*) 
+		  from board as b left join member as m
+		    on b.mno = m.mno
+		 where b.tno = #{tno} and b.btype = #{btype}
+		<if test="keyword != 'none'">
+		 	<choose>
+		 		<when test="category == 'TITLE'">
+		 			and b.btitle like #{keyword}
+		 		</when>
+		 		<when test="category == 'WRITER'">
+		 			and m.mname like #{keyword}
+		 		</when>
+		 		<when test="category == 'CONTENT'">
+		 			and b.bcontent like #{keyword}
+		 		</when>
+		 		<otherwise>
+		 			and b.btitle like #{keyword}
+		 			 or m.mname like #{keyword}
+		 			 or b.bcontent like #{keyword}
+		 		</otherwise>
+		 	</choose>
+		 </if>
+	</select>
+	
+	<select id="selectList" resultMap="boardMap">
+		select
+			b.bno,
+			b.btitle,
+			b.bcontent,
+			b.breg_date,
+			b.bmod_date,
+			b.bview_cnt,
+			m.mno,
+			m.mname
+		from board b
+		inner join member m
+			where b.mno = m.mno
+		order by bno desc 
+	</select>
+
+	<select id="userSelect" parameterType="int" resultType="member">
+		SELECT
+			MNO
+		    ,TNO
+		    ,MNAME
+		    ,MPATH
+		    ,MEMAIL
+		    ,MPNO
+		    ,MGENDER
+		FROM MEMBER
+		WHERE MNO = #{mno}
+	</select>
+	
+	<select id="commentSelectOne" parameterType="int" resultMap="commentMap">
+		SELECT
+			CNO
+			,BNO
+		    ,MNO
+		    ,CCONTENT
+		    ,CREG_DATE
+		FROM COMMENT
+		WHERE CNO = #{cno}
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="boardMap" >
+		select
+			b.bno,
+			b.btitle,
+			b.bcontent,
+			b.breg_date,
+			b.bview_cnt,
+			m.mno,
+			m.mname,
+			m.memail,
+			f.fno,
+			f.fori_name,
+			f.freal_name,
+			f.fpath,
+			f.fthumb    
+		from board b
+		inner join member m    
+		inner join fileattach f
+		where b.mno = m.mno
+		    and b.bno = f.bno
+		    and b.bno = #{bno} 
+		</select>
+		
+	<select id="selectNo" resultType="int" >
+		select max(bno) from board 
+	</select>
+	
+	<insert id="insert" parameterType="board">
+		insert into board
+		(
+			tno,
+			mno,
+			btitle, 
+			bcontent,
+			btype,
+			breg_date,
+			bview_cnt
+		)
+		 values
+		 (
+			#{tno},
+			#{mno},
+			#{btitle},
+			#{bcontent},
+			#{btype},
+			  now(),
+			  0
+		  )
+		  <selectKey keyProperty="bno" order="AFTER" resultType="int">
+        	 SELECT LAST_INSERT_ID()
+      		</selectKey>
+ 		 
+	</insert>
+	
+	<insert id="registFile" parameterType="fileattach">
+		insert into fileattach (
+			bno,
+			fori_name,
+			freal_name,
+			fpath
+		) values (
+			#{bno},
+			#{foriName},
+			#{frealName},
+			#{fpath}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from board
+		where bno=#{bno}
+	</delete>
+	
+	<delete id="deleteFile" parameterType="int">
+		delete from fileattach
+		where bno=#{bno}
+	</delete>
+	
+	<update id="update" parameterType="board">
+		update board set
+			btitle=#{btitle},
+			bcontent=#{bcontent},
+			bmod_date = now()
+		where bno=#{bno}
+	</update>
+
+	<update id="updateCnt" parameterType="int">
+		update board set
+			bview_cnt = bview_cnt +1
+		  where bno=#{bno}
+	</update>
+	
+</mapper>

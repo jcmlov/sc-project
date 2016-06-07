@@ -1,0 +1,24 @@
+.drag {
+	width: 32px;
+	height: 32px;
+	border : 2px solid black;
+	border-radius: 1em;
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+	box-shadow: 2px 2px 2px gray;
+}
+
+#drag-me::before {
+	content: "#" attr(id);
+	font-weight: bold;
+}
+
+.drag2 {
+	background: red;
+}
+
+#replacementPlayers img {
+	border-radius : 0.3em;
+	box-shadow: 2px 2px 2px lightgray;
+	border : 2px solid yellow;
+}

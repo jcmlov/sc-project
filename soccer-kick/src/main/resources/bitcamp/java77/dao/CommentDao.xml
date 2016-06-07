@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.CommentDao">
+	<insert id="insert" parameterType="comment">
+		insert into comment (
+			bno, mno, ccontent, creg_date
+		) values (
+			#{bno}, #{mno}, #{ccontent}, now()
+		)
+	</insert>
+	
+	<select id="list" parameterType="int" resultType="comment">
+		select c.cno, c.bno, c.ccontent, m.mname, m.mpath, m.memail,
+			   date_format(c.creg_date, '%y.%m.%d') as cregDate
+		  from comment as c left join member as m
+		    on c.mno = m.mno
+		 where c.bno = #{bno}
+		 order by c.cno desc
+		 limit #{start}, #{howmany}
+	</select>
+	
+	<select id="selectCommentCount" parameterType="boardDto" resultType="int">
+		select count(*) from comment where bno = #{bno}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from comment
+		 where cno = #{cno}
+	</delete>
+	
+	<delete id="deleteByBoardNo" parameterType="int">
+		delete from comment
+		 where bno = #{bno}
+	</delete>
+	
+	<update id="update" parameterType="comment">
+		update comment
+		   set ccontent = #{ccontent}
+		 where cno = #{cno}
+	</update>
+</mapper>
+
+
+
+
+
+

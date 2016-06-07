@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="list">
+		<table id="listTable" class="table table-hover">
+			<thead>
+				<tr>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>조회수</th>
+					<th>등록일</th>
+					<th>수정일</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/js/common.js"></script>
+	<script>
+		/* btype, tno 변수로 잡아서 해야 할듯. 일단 테스트 */
+		$.getJSON(contextRoot + "/board/list.do?btype=S&tno=1", function(resultObj) {
+			console.log(resultObj.data);
+			var table = $("#listTable");
+			  for (var board of resultObj.data) {
+			    $("<tr>")
+			      .html("<td><a class='detailLnk' href='#' boardNo='" 
+				          + board.bno + "'>" + board.btitle + 
+				       "</a></td><td>" + board.bwriter +
+				       "</td><td>" + board.bviewCnt + "</td>" +
+				       "<td>" + board.bregDate + "</td>" +
+				       "<td>" + board.bmodDate + "</td>")
+						.appendTo(table);
+			  }
+			  $("a.detailLnk").click(clickDetailLnk);
+		});
+		
+		function clickDetailLnk(event) {
+			event.preventDefault(); 
+			location.href = "sDetail.html?btype=S&bno=" + $(event.target).attr("boardNo");
+		}
+	</script>
+</body>
+</html>

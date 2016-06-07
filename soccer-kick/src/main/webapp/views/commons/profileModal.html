@@ -1,0 +1,168 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h4 class="modal-title text-muted">Profile/Info</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel with-nav-tabs panel-default">
+						<div class="panel-heading">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tab1default" data-toggle="tab">Username
+										Profile</a></li>
+								<li><a href="#tab2default" data-toggle="tab">Myteam
+										Info</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="tab1default">
+									<form class="form-horizontal" role="form">
+										<div class="row">
+											<div class="col-md-5">
+												<div class="fileWrapper">
+													<div class="photoBox" id="photoBox"
+														style="background-image: url('/soccer-kick/images/commons/baseUserIcon.png');"></div>
+													<input type="file" class="fileBox" name="profilePhoto"
+														onchange="selectFile(event)">
+												</div>
+												<br>
+											</div>
+
+											<div class="col-md-7">
+												<div class="form-group">
+													<div class="col-sm-12">
+														<div class="input-group margin-bottom-4">
+															<span class="input-group-addon" contenteditable="true">
+																<i class="glyphicon glyphicon-envelope mycolor"></i>
+															</span> <input size="60" maxlength="255" class="form-control"
+																name="UserRegistration[email]"
+																id="UserRegistration_email" type="email"
+																disabled="disabled" value="useremail@gmail.com">
+														</div>
+														<div class="input-group margin-bottom-4">
+															<span class="input-group-addon" contenteditable="true">
+																<i class="glyphicon glyphicon-user mycolor"></i>
+															</span> <input size="60" maxlength="255" class="form-control"
+																name="UserRegistration[fname]"
+																id="UserRegistration_fname" type="text" value="UserName"
+																disabled="disabled">
+														</div>
+														<div class="input-group margin-bottom-4">
+															<span class="input-group-addon"> <i
+																class="glyphicon glyphicon-phone mycolor"></i>
+															</span> <input size="60" maxlength="255" class="form-control"
+																placeholder="Contact Number(000.0000.000)"
+																required="required"
+																name="UserRegistration[contactnumber]"
+																id="UserRegistration_contactnumber" type="text"
+																value="000.0000.0000">
+														</div>
+														<div class="input-group margin-bottom-4">
+															<input size="60" maxlength="255" class="form-control"
+																placeholder="Address" required="required"
+																name="UserRegistration[address]" id="address"
+																type="text"> <span class="input-group-addon">
+																<button id="searchAddrBtn"
+																	class="glyphicon glyphicon-tag mycolor"></button>
+															</span>
+														</div>
+														<div class="input-group margin-bottom-4">
+															<input size="100" maxlength="255" class="form-control"
+																placeholder="Detail Address" required="required"
+																name="UserRegistration[detailAddress]"
+																id="detailAddress" type="text">
+														</div>
+														<div class="input-group margin-bottom-4">
+															<div class="has-success radio">
+																<label> <input type="radio" name="position"
+																	id="FW" value="FW" checked="checked">FW
+																</label> <label> <input type="radio" name="position"
+																	id="MF" value="MF">MF
+																</label> <label> <input type="radio" name="position"
+																	id="DF" value="DF">DF
+																</label> <label> <input type="radio" name="position"
+																	id="PK" value="PK">PK
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<hr>
+										<div class="form-group">
+											<div class="col-sm-offset-3 col-sm-6">
+												<button type="submit" class="btn btn-block btn-default">
+													<i class="fa fa-star fa-fw"></i>Update
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="tab-pane fade" id="tab2default">
+									<div class="row">
+										<div class="col-md-6">
+											<img
+												src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+												class="img-responsive">
+										</div>
+										<div class="col-md-6">
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h1 class="panel-title">My Score</h1>
+												</div>
+												<div class="panel-body">
+													<ul class="list-group">
+														<li class="list-group-item">참여 횟수 <span class="badge">42</span>
+														</li>
+														<li class="list-group-item">골 <span class="badge">10</span>
+														</li>
+														<li class="list-group-item">도움 <span class="badge">22</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<h1 class="text-primary">Real Madrid</h1>
+											<div class="row">
+												<div class="col-md-8">
+													<h4 class="text-primary">Leader : Ronaldo</h4>
+												</div>
+												<div class="col-md-4">
+													<a class="btn btn-primary">Withdrawal</a>
+												</div>
+											</div>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Area</th>
+														<th>Members</th>
+														<th>Since</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Seoul</td>
+														<td>20 / 24</td>
+														<td>10.10.11</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

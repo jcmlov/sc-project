@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.java77.dao.TeamDao">
+
+	<resultMap type="member" id="memberMap">
+		<result column="mbase_addr" property="mbaseAddr"/>
+		<result column="mdet_addr" property="mdetAddr"/>
+		<result column="mleader_yn" property="mleaderYN"/>
+		<result column="menter_yn" property="menterYN"/>
+		<result column="mapply_yn" property="mapplyYN"/>
+		<result column="mplay_cnt" property="mplayCnt"/>
+		<result column="mgoal_cnt" property="mgoalCnt"/>
+		<result column="msupport_cnt" property="msupportCnt"/>
+		<result column="mloss_cnt" property="mlossCnt"/>
+	</resultMap>
+	
+	<resultMap type="team" id="teamMap">
+		<result column="treg_date" property="tregDate"/>
+		<result column="tmem_cnt" property="tmemCnt"/>
+	</resultMap>  	
+	
+	<select id="list" resultType="team" parameterType="teamDto">
+		select t.tno, t.tname, t.tepath, date_format(t.treg_date, '%y.%m.%d') as tregDate, t.tmem_cnt as tmemCnt,
+			   t.tcontent, t.tpoint, t.tlatitude, t.tlongitude, m.mname as tleader, m.memail as tleaderEmail
+		  from team as t left join member as m
+		    on m.tno = t.tno
+		 where m.mleader_yn = 'Y' and t.tpoint like #{district}
+		 <if test="keyword != 'none'">
+		 	and t.tname like #{keyword}
+		 </if>
+		 order by t.tno desc
+		 limit #{start}, #{howmany}
+	</select>
+	
+	<select id="select" resultType="team" parameterType="int">
+		select t.tno, t.tname, t.tepath, date_format(t.treg_date, '%y.%m.%d') as tregDate, t.tmem_cnt as tmemCnt,
+			   t.tcontent, t.tpoint, t.tlatitude, t.tlongitude, m.mname as tleader, m.memail as tleaderEmail
+		  from team as t left join member as m
+		    on m.tno = t.tno
+		 where m.mleader_yn = 'Y' and t.tno = #{tno}
+	</select>
+	
+	<select id="selectTeamCount" resultType="int" parameterType="teamDto">
+		select count(*) from team where tpoint like #{district}
+		<if test="keyword != 'none'">
+			and tname like #{keyword}
+		</if>
+	</select>
+	
+	<select id="selectTeamInfo" resultMap="teamMap" parameterType="int">
+		SELECT
+			TNO
+		    ,TNAME
+		    ,TEPATH
+		    ,TREG_DATE
+		    ,TMEM_CNT
+		    ,TCONTENT
+		    ,TPOINT
+		    ,TLATITUDE
+		    ,TLONGITUDE
+		FROM TEAM
+		WHERE TNO = #{tno}
+	</select>
+	
+	<select id="selectTeam" resultMap="teamMap">
+		SELECT 
+			TNO
+		    ,TNAME
+		    ,TEPATH
+		    ,TREG_DATE
+		    ,TMEM_CNT
+		    ,TCONTENT
+		    ,TPOINT
+		    ,TLATITUDE
+		    ,TLONGITUDE
+		FROM TEAM
+	</select>
+	
+	<select id="searchMembers" parameterType="member" resultMap="memberMap">
+		SELECT 
+			MNO
+		    ,MNAME
+		    ,MPATH
+		    ,MEMAIL
+		    ,MPNO
+		    ,MGENDER
+		FROM MEMBER
+		WHERE MPNO = #{mpno}
+		AND MLEADER_YN = 'N'
+		AND MENTER_YN = 'N'
+		AND MAPPLY_YN = 'N'
+	</select>
+	
+	<insert id="createTeam" parameterType="team">
+		INSERT INTO TEAM
+		(
+			TNAME
+		    ,TEPATH
+		    ,TREG_DATE
+		    ,TMEM_CNT
+		    ,TCONTENT
+		    ,TPOINT  
+		    ,TLATITUDE
+		    ,TLONGITUDE  
+		)
+		VALUES
+		(
+			#{tname}
+		    ,#{tepath}
+		    ,NOW()
+		    ,#{tmemCnt}
+		    ,#{tcontent}
+		    ,#{tpoint}
+		    ,#{tlatitude}
+		    ,#{tlongitude}
+		)
+		<selectKey keyProperty="tno" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="memberIntoTeam" parameterType="member">
+		UPDATE MEMBER
+		SET TNO = #{tno}
+			,MLEADER_YN = #{mleaderYN}
+			,MENTER_YN = 'Y'
+			,MAPPLY_YN = 'N'
+			WHERE MNO = #{mno}
+	</update>
+	
+</mapper>

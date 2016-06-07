@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="bitcamp.java77.dao.GalleryDao">
+	
+	<resultMap type="gallery" id="galleryMap">
+		<result column="breg_date" property="bregDate" />
+		<result column="bmod_date" property="bmodDate" />
+		<result column="fori_name" property="foriName" />
+		<result column="freal_name" property="frealName" />
+	</resultMap>
+	
+	<resultMap type="team" id="teamMap">
+		<result column="mbase_addr" property="mbaseAddr"/>
+		<result column="mdet_addr" property="mdetAddr"/>
+		<result column="mleader_yn" property="mleaderYn"/>
+		<result column="menter_yn" property="menterYn"/>
+		<result column="mapply_yn" property="mapplyYn"/>
+		<result column="mplay_cnt" property="mplayCnt"/>
+		<result column="mgoal_cnt" property="mgoalCnt"/>
+		<result column="msupport_cnt" property="msupportCnt"/>
+		<result column="mloss_cnt" property="mlossCnt"/>
+		<result column="treg_date" property="tregDate"/>
+		<result column="tmem_cnt" property="tmemCnt"/>
+	</resultMap>  	
+	
+	<select id="selectGalleryList" parameterType="int" resultMap="galleryMap">
+		SELECT
+			B.BNO
+			,B.TNO
+			,B.MNO
+			,B.BTYPE
+			,B.BTITLE
+			,B.BCONTENT
+			,B.BREG_DATE
+			,F.FNO
+			,F.FORI_NAME
+			,F.FPATH
+			,F.FTHUMB
+			,F.FREAL_NAME
+		FROM 
+			BOARD B
+		JOIN FILEATTACH F
+		ON B.BNO = F.BNO
+		WHERE BTYPE= 'G'
+		AND B.TNO = #{tno}
+		ORDER BY BNO DESC
+	</select>
+	
+	<select id="selectFilterData" parameterType="int" resultMap="galleryMap">
+		SELECT MAX(BREG_DATE) maxDate
+	  		  ,MIN(BREG_DATE) minDate
+		FROM BOARD B
+		INNER JOIN FILEATTACH F
+			WHERE BTYPE= 'G'
+			AND B.BNO = F.BNO 
+			AND B.TNO = #{tno}
+		ORDER BY BREG_DATE ASC
+	</select>
+	
+	<select id="selectGalleryDetail" parameterType="gallery" resultMap="galleryMap">
+		SELECT 
+			B.BNO
+		    ,B.TNO
+		    ,B.MNO
+		    ,B.BTYPE
+		    ,B.BTITLE
+		    ,B.BCONTENT
+		    ,B.BREG_DATE
+		    ,F.FNO
+		    ,F.FORI_NAME
+		    ,F.FPATH
+		    ,F.FTHUMB
+		    ,F.FREAL_NAME
+		FROM BOARD B
+		INNER JOIN FILEATTACH F
+			WHERE B.BNO = F.BNO
+			AND B.BTYPE = 'G'
+			AND B.TNO = #{tno}
+			AND B.MNO = #{mno}
+			AND B.BNO = #{bno}
+			AND F.FNO = #{fno}
+	</select>
+	
+	<insert id="galleryInsert" parameterType="gallery">
+		INSERT INTO BOARD
+		(
+		    TNO
+		    ,MNO
+		    ,BTYPE
+		    ,BTITLE
+		    ,BCONTENT
+		    ,BREG_DATE
+		)
+		VALUES
+		(
+		  	#{tno}
+		  	,#{mno}
+		    ,'G'
+		    ,#{btitle}
+		    ,#{bcontent}
+		    ,NOW()
+		)
+		<selectKey keyProperty="bno" order="AFTER" resultType="int">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="galleryUpdate" parameterType="gallery">
+		UPDATE BOARD
+		SET BTITLE = #{btitle}
+			,BCONTENT = #{bcontent}
+			,BMOD_DATE = NOW()
+		WHERE BTYPE = 'G'
+		AND TNO = #{tno}
+		AND MNO = #{mno}
+		AND BNO = #{bno}
+	</update>
+	
+	<delete id="deleteGalleryFile" parameterType="gallery">
+		DELETE FROM FILEATTACH
+		WHERE FNO = #{fno}
+		AND BNO = #{bno}
+	</delete>
+	
+	<insert id="addAttachFile" parameterType="gallery">
+		INSERT INTO FILEATTACH
+		(
+		    BNO
+		    ,FORI_NAME
+		    ,FPATH
+		    ,FTHUMB
+		    ,FREAL_NAME
+		)
+		VALUES
+		(
+		    #{bno}
+		    ,#{foriName}
+		    ,#{fpath}
+		    ,#{fthumb}
+		    ,#{frealName}
+		)
+	</insert>
+	
+	<update id="updateAttachFile" parameterType="gallery">
+		UPDATE FILEATTACH
+		SET FORI_NAME = #{foriName}
+			,FREAL_NAME = #{frealName}
+			,FPATH = #{fpath}
+			,FTHUMB = #{fthumb}
+		WHERE FNO = #{fno}
+		AND BNO = #{bno}
+	</update>
+	
+	<select id="selectTeamInfoList" resultMap="teamMap" parameterType="int">
+		SELECT
+			M.MNO
+		    ,M.MNAME
+		    ,M.MPATH
+		    ,M.MEMAIL
+		    ,M.MPNO    
+		    ,M.MGENDER
+		    ,M.MBASE_ADDR
+		    ,M.MDET_ADDR
+		    ,M.MPNO
+		    ,M.MBIRTH
+		    ,M.MLEADER_YN
+		    ,M.MENTER_YN
+		    ,M.MAPPLY_YN
+		    ,M.MPLAY_CNT
+		    ,M.MGOAL_CNT
+		    ,M.MSUPPORT_CNT
+		    ,M.MLOSS_CNT
+		    ,M.MPOSNAME
+		FROM MEMBER M
+		JOIN TEAM T
+		WHERE M.TNO = T.TNO
+		AND T.TNO = #{tno}
+	</select>
+	
+	<select id="selectTeamInfo" resultMap="teamMap" parameterType="int">
+		SELECT
+			TNO
+		    ,TNAME
+		    ,TEPATH
+		    ,TREG_DATE
+		    ,TMEM_CNT
+		    ,TCONTENT
+		    ,TPOINT
+		    ,TLATITUDE
+		    ,TLONGITUDE
+		FROM TEAM
+		WHERE TNO = #{tno}
+	</select>
+</mapper>

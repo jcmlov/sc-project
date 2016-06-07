@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Strategy Board</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<!-- <link rel="stylesheet" href="flexslider.css" type="text/css" media="screen" /> -->
+<link href="4/thumbnail-slider.css" rel="stylesheet" type="text/css" />
+<link href="4/ninja-slider.css" rel="stylesheet" type="text/css" />
+<script src="4/thumbnail-slider.js" type="text/javascript"></script>
+<script src="4/ninja-slider.js" type="text/javascript"></script>
+<style type="text/css">
+#btns {
+	position:absolute;
+	top:0px;
+	z-index: 50;
+}
+</style>
+</head>
+<body>
+    <div id='ninja-slider'>
+        <div>
+            <div class="slider-inner">
+                <ul id="slideList"></ul>
+                <div class="fs-icon" title="Expand/Close"></div>
+            </div>
+            <div id="thumbnail-slider">
+                <div class="inner">
+                    <ul id="thumbList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="btns">
+		<a id="playBtn" class="btn btn-success" style="box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75); border-radius:0px; background-color: gray;">Play</a>
+    	<a id="stopBtn" class="btn btn-success" style="box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75); border-radius:0px; background-color: gray;">Stop</a>
+    </div>
+    
+    <div id="contents"class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<hr />
+				<table class="table table-condensed" id="dtlTable">
+					<thead>
+						<tr align="center">
+							<th width="10%">제목</th>
+							<th width="60%" class="title" id="btitle"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>작성일</td>
+							<td class="reg_date" id="bmodDate"></td>
+						</tr>
+						<tr>
+							<td>글쓴이</td>
+							<td class="writer" id="bwriter"><span style='float: right'
+								class="viewcnt" id="bviewCnt"></span></td>
+						</tr>
+						<tr>
+							<td id="bcontent" colspan="2"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="commentTable" class="table table-condensed"></table>
+				<table class="table table-condensed">
+					<tr>
+						<td><span class="form-inline" role="form">
+								<div class="form-group">
+									<input type="text" id="commentParentName"
+										name="commentParentName" class="form-control col-lg-2"
+										data-rule-required="true" placeholder="이름" maxlength="10">
+								</div>
+								<div class="form-group">
+									<button type="button" id="commentParentSubmit"
+										name="commentParentSubmit" class="btn btn-primary">확인</button>
+								</div><textarea id="commentParentText" class="form-control2 col-lg-12"
+									style="width: 100%" rows="4"></textarea>
+						</span></td>
+					</tr>
+				</table>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<td><span style='float: right'>
+									<button type="button" id="list" class="btn btn-primary">목록</button>
+									<button type="button" id="modify" class="btn btn-primary">수정</button>
+									<button type="button" id="delete" class="btn btn-primary">삭제</button>
+									<button type="button" id="write" class="btn btn-primary">글쓰기</button>
+							</span></td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+    
+    <script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/js/common.js"></script>
+    <script>
+    	var slideIndex = 1;
+    	var numImages;
+	    function autoPlay() {
+	    	console.log(slideIndex, numImages);
+	   		$("#thumb" + slideIndex).trigger("click");
+	   		slideIndex++;
+	   		if(slideIndex > numImages) slideIndex = 1;
+	    };
+	    
+	    $("thumbnail-slider-next").click(function() {
+	    	slideIndex++;
+	    	
+	    });
+	    
+	    $("thumbnail-slider-prev").click(function() {
+	    	slideIndex--;
+	    });
+	    
+	    //////////////////ajax/////////////////////
+	    /* var params = location.href.split("?")[1];
+		var btype  = params.split("&")[0].split("=")[1];
+		var bno    = params.split("&")[1].split("=")[1]; */
+	    
+    	$.getJSON(
+    		contextRoot + "/board/detail.do?btype=S&bno=9",
+			function(resultObj) {
+				var boardDetailObj = resultObj.boardDetail;
+				var filesObj = resultObj.files;
+				
+				numImages = filesObj.length;
+				
+				for(var i = 0; i < numImages; i++) {
+					var slideObj = '<li><a class="ns-img" href="' + filesObj[i].fpath + '"></a></li>';
+					var thumbObj = '<li id="thumb' + (i + 1) + '"onclick="return thumbClick(' + (i + 1) + ')"><a class="thumb" href="' + filesObj[i].fpath + '"></a><span>' + (i + 1) + '</span></li>';
+					$("#slideList").html($("#slideList").html() + slideObj);
+					$("#thumbList").html($("#thumbList").html() + thumbObj);
+					
+				}
+				
+				var boardDetailObj = resultObj.boardDetail;
+				var filesObj = resultObj.files;
+				$("#btitle").html($("#btitle").html() + boardDetailObj.btitle);
+				$("#bmodDate").html($("#bmodDate").html() + boardDetailObj.bmodDate);
+				$("#bwriter").html($("#bwriter").html() + boardDetailObj.bwriter);
+				$("#bviewCnt").html($("#bviewCnt").html() + "조회수 : " + boardDetailObj.bviewCnt);
+				$("#bcontent").html($("#bcontent").html() + boardDetailObj.bcontent);
+				
+				$("#btns").css("opacity", "0")
+						.css("left", $("#slideList").offset().left)
+						.css("top", 40);
+			}
+		);
+    	//////////////////////////////////////////////
+    	
+    	///////////////////play interval/////////////
+    	var interval;
+    	var currentState = "stop";
+    	$("#playBtn").click(function () {
+    		if(currentState == "stop") {
+	    		interval = setup();
+	    		currentState = "play";
+    		}
+    	});
+    	$("#stopBtn").click(function() {
+    		clearInterval(interval);
+    		currentState = "stop";
+    	});
+    	
+    	function thumbClick(index) {
+    		slideIndex = index;
+    	};
+    	
+    	function setup() {
+    		return setInterval(autoPlay, 1000);
+    	};
+    	
+    	$(window).resize(function() {
+    		$("#btns").css("opacity", "0")
+    				.css("left", $("#slideList").offset().left + 10)
+    				.css("top", 40);
+    	});
+    	
+    	window.onload = function() {
+    		$("#btns").css("opacity", "0")
+    				.css("left", $("#slideList").offset().left + 10)
+    				.css("top", 40);
+    	}
+    	/////////////////////////////////////////////////////
+    	/////////////////////btns hidden////////////////////
+    	$("#slideList").hover(function() {
+    		$("#btns").css("opacity", "0.7")
+    				.css("transition-duration", "1s");
+    	}, function() {
+    		$("#btns").css("opacity", "0")
+    				.css("transition-duration", "1s");
+    	})
+    	$("#playBtn").hover(function() {
+    		$("#btns").css("opacity", "0.7")
+			.css("transition-duration", "1s");
+		}, function() {
+			$("#btns").css("opacity", "0")
+					.css("transition-duration", "1s");
+		})
+		$("#stopBtn").hover(function() {
+    		$("#btns").css("opacity", "0.7")
+			.css("transition-duration", "1s");
+		}, function() {
+			$("#btns").css("opacity", "0")
+					.css("transition-duration", "1s");
+		})
+    </script>
+    <script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+	<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+	<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+</body>
+</html>

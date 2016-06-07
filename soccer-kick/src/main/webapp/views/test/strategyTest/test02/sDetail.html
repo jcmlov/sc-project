@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="flexslider.css" type="text/css" media="screen" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+	<div class="container">
+		<hr />
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<table class="table table-condensed" id="dtlTable">
+					<thead>
+						<tr align="center">
+							<th width="10%">제목</th>
+							<th width="60%" class="title" id="btitle"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>작성일</td>
+							<td class="reg_date" id="bmodDate"></td>
+						</tr>
+						<tr>
+							<td>글쓴이</td>
+							<td class="writer" id="bwriter"><span style='float: right'
+								class="viewcnt" id="bviewCnt"></span></td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<!-- !!!!!!!!!!!!working in progress!!!!!!!!!!! -->
+				<div id="playParent" class="col-md-8 col-md-offset-2">
+					<div id="playGround" style="box-shadow: 10px 10px 10px gray;">
+						<img id="imgFromDB" src="" class="img-responsive">
+					</div>
+				</div>
+				<div id="bcontent" class="col-md-8 col-md-offset-2"><hr/></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<!-- !!!!!!!!!!!!working in progress!!!!!!!!!!! -->
+			<div id="playParent" class="col-md-8 col-md-offset-2">
+				<table id="commentTable" class="table table-condensed"></table>
+				<table class="table table-condensed">
+					<tr>
+						<td><span class="form-inline" role="form">
+								<div class="form-group">
+									<input type="text" id="commentParentName"
+										name="commentParentName" class="form-control col-lg-2"
+										data-rule-required="true" placeholder="이름" maxlength="10">
+								</div>
+								<div class="form-group">
+									<button type="button" id="commentParentSubmit"
+										name="commentParentSubmit" class="btn btn-primary">확인</button>
+								</div> <textarea id="commentParentText"
+									class="form-control2 col-lg-12" style="width: 100%" rows="4"></textarea>
+						</span></td>
+					</tr>
+				</table>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<td><span style='float: right'>
+									<button type="button" id="list" class="btn btn-primary">목록</button>
+									<button type="button" id="modify" class="btn btn-primary">수정</button>
+									<button type="button" id="delete" class="btn btn-primary">삭제</button>
+									<button type="button" id="write" class="btn btn-primary">글쓰기</button>
+							</span></td>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<hr />
+	</div>
+
+	<footer id="footer" class="section"></footer>
+
+	<div class="modal fade" id="profileModal"></div>
+	
+	<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/js/common.js"></script>
+	<!-- <script src="/soccer-kick/js/commons/headerFooterModal.js"></script> -->
+	<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+	<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+	<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+	<script>
+		var params = location.href.split("?")[1];
+		var btype  = params.split("&")[0].split("=")[1];
+		var bno    = params.split("&")[1].split("=")[1];
+		
+		var images = [];
+		var numImages;
+		var currentImage = 0;
+		$.getJSON(
+			contextRoot + "/board/detail.do?btype=" + btype + "&bno=" + bno,
+			function(resultObj) {
+				console.log(resultObj.boardDetail);
+				var boardDetailObj = resultObj.boardDetail;
+				var filesObj = resultObj.files;
+				$("#btitle").html($("#btitle").html() + boardDetailObj.btitle);
+				$("#bmodDate").html($("#bmodDate").html() + boardDetailObj.bmodDate);
+				$("#bwriter").html($("#bwriter").html() + boardDetailObj.bwriter);
+				$("#bviewCnt").html($("#bviewCnt").html() + "조회수 : " + boardDetailObj.bviewCnt);
+				$("#bcontent").html($("#bcontent").html() + boardDetailObj.bcontent);
+				
+				console.log(resultObj.files, resultObj.files.length);
+				numImages = filesObj.length;
+				for(var i = 0; i < numImages; i++) {
+					images[i] = filesObj[i].fpath;
+				}		
+				setup();
+			}
+		);
+		
+		function setup() {
+			return setInterval(draw, 800);
+		}
+		
+		function draw() {
+			$("#imgFromDB").attr("src", images[currentImage]);
+			$("#imgFromDB2").attr("src", images[currentImage]);
+			currentImage++;
+			if(currentImage >= numImages) currentImage = 0;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/createTeam.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<title>팀 생성</title>
+</head>
+<body>
+	<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+		
+		<div class="backDiv">
+			<div class="word"></div>
+		</div>
+		
+		<div class="section">
+			<div class="container">
+				<div class="row">
+				<form action="" class="form-horizontal" role="form" method="post" id="fForm">
+					<div class="col-md-offset-2 col-md-2 text-center">
+						<section>
+							<div id="imgDiv">
+								<img src="/soccer-kick/images/createTeam/no-image-blog-one.png" id="img">
+							</div>
+							<div class="btn-group" role="group">
+								<div class="col-md-offset-2 col-md-12">
+									<a id="addphoto" href="#" class="btn btn-info" data-toggle="button" role="button">등록</a>
+									<a id="removephoto" href="#" class="btn btn-info" data-toggle="button">삭제</a>
+								</div>
+							</div>
+						</section>
+						<input type="file" name="file" id="file" accept="image/*;capture=camera" capture="camera" />
+					</div>
+					<div class="col-md-offset-1 col-md-6">
+						<div class="form-group">
+							<div class="col-sm-12" id="teamHidden">
+								<input type="text" class="form-control" id="tname" name="tname" placeholder="팀명" />
+							</div>
+							<div id="memHidden" style="display:none"/></div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+			               		<div class="input-group margin-bottom-9">
+					                  <input size="60" maxlength="255" class="form-control" placeholder="주소" name="tpoint"
+					                     id="tpoint" type="text" readonly="readonly"/>
+					                  <span class="input-group-addon">
+					                      <button id="searchAddrBtn1" class="glyphicon glyphicon-tag mycolor"></button> 
+					                  </span>
+			               		</div>
+			            </div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<textarea name="tcontent" id="tcontent" class="form-control2" rows="4" placeholder="팀소개"></textarea>
+								<a class="btn btn-block btn-info" style="font-weight: bold;" type="button" id="registBtn" disabled="disabled">등록</a>
+							</div>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-xs-9 col-xs-offset-2">
+					<div class="input-group">
+						<input type="text" class="form-control" name="mpno" placeholder="핸드폰" maxlength="13">
+		                <span class="input-group-btn">
+		                    <button class="btn btn-default" type="button" id="searchMemBtn">
+		                    	<span class="glyphicon glyphicon-search"></span>
+		                    </button>
+		                </span>
+	                </div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" role="tablist" id="memberGroup1"></ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10" role="tabpanel">
+					<!-- Nav tabs -->
+                <ul class=" nav nav-justified" role="tablist" id="memberGroup2"></ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-9">
+			<hr>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-9">
+			<div id="map" style="width: 100%; height: 400px; display:none;"></div>
+		</div>
+	</div>
+
+<footer id="footer" class="section"></footer>
+<div class="modal fade" id="profileModal"></div>
+		
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/commons/socket.io.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/soccer-kick/js/common.js"></script>
+<script src="/soccer-kick/js/commons/alert.js"></script>
+<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script	src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="//apis.daum.net/maps/maps3.js?apikey=3aa8cea7bf19a61e838e2b12a8b35703&libraries=services"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script src="/soccer-kick/js/util/addrEvent.js"></script>
+<script src="/soccer-kick/js/createTeam.js"></script>
+</body>
+</html>

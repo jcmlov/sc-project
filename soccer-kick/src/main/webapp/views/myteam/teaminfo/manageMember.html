@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/soccer-kick/css/myteam/teaminfo/thumbnail-slider.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="/soccer-kick/css/commons/my-bootstrap.css">
+<link href="/soccer-kick/css/myteam/teaminfo/manageMember.css" rel="stylesheet" type="text/css" />
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">	
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<style>
+ 	.manageModal { 
+ 		position:absolute; top: 100px; z-index: 999; display: none;
+ 	} 
+</style>
+</head>
+<body>
+<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+<!-- 입단 신청자 목록 -->
+<div class="container" style="padding-top: 60px;">
+	<div class="row">
+			
+		<div class="col-lg-8 col-lg-offset-2">
+			<!--start-->
+			<div class="team-wrap" style="margin: 0; padding: 0;">
+				<div id="teamEm" class="team-box"></div>
+				<div class="teamContent-box">
+					<div class="team-title">
+						<div id="teamName"></div>
+						<div id="teamContent"></div>
+					</div>
+				</div>
+			</div>
+			<div class="colTitle">입단 신청자 목록</div>
+			<div class="colApply" style="padding: 90px 0 10px;">
+				<div id="thumbnail-slider">
+					<div class="inner">
+						<ul id="applyList"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+
+
+
+<!-- 선수 목록 리스트 -->
+<div class="container">
+	<hr style="opacity: 0; margin-top: 30px;">
+	<div class="row bootstrap snippets">
+		<div class="col-md-2 col-md-offset-2 container-widget">
+			<div class="panel panel-info panel-widget">
+				<div class="panel-title text-center">GK</div>
+				<div class="panel-body">
+					<ul id="GK" class="basic-list image-list gk connectedSortable" ></ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 container-widget">
+			<div class="panel panel-success panel-widget">
+				<div class="panel-title text-center">DF</div>
+				<div class="panel-body">
+					<ul id="DF" class="basic-list image-list df connectedSortable"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 container-widget">
+			<div class="panel panel-info panel-widget">
+				<div class="panel-title text-center">MF</div>
+				<div class="panel-body">
+					<ul id="MF" class="basic-list image-list mf connectedSortable"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 container-widget">
+			<div class="panel panel-success panel-widget">
+				<div class="panel-title text-center">FW</div>
+				<div class="panel-body">
+					<ul id="FW" class="basic-list image-list fw connectedSortable"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 모달 -->
+<div class="container manageModal">
+	<div class="row" id="detailInfo">
+		<div class="col-md-8 col-md-offset-4">
+			<div class="card-wrap">
+				<div class="photo-box"
+					style="background-image: url()"></div>
+				<div class="content-box">
+					<button class="btn btn-danger" onclick="teamExpulsion(this);" style="float: right;">제명</button>
+					<div class="content-title">
+						<b class="memberName">김대오</b>
+					</div>
+					<div class="content" style="margin: 1px;">
+						<table class="detailTb">
+							<tr>
+								<td>포지션</td>
+								<td class="memberPosition">GK</td>
+							</tr>
+							<tr>
+								<td>생일</td>
+								<td class="memberBirth">1921-12-12</td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td class="memberAddr">서울시 강남구 역삼동</td>
+							</tr>
+						</table>
+						<br />
+						<p>※ 활동현황</p>
+						<table class="pointTb">
+							<tr>
+								<td>득점</td>
+								<td>도움</td>
+								<td>실점</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="input-group number-spinner">
+										<span class="input-group-btn">
+											<button class="btn btn-default" data-dir="dwn">
+												<span class="glyphicon glyphicon-minus"></span>
+											</button>
+										</span> <input id="memberGoal" type="text"
+											class="form-control text-center" value="0"> <span
+											class="input-group-btn">
+											<button class="btn btn-default" data-dir="up">
+												<span class="glyphicon glyphicon-plus"></span>
+											</button>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="input-group number-spinner">
+										<span class="input-group-btn">
+											<button class="btn btn-default" data-dir="dwn">
+												<span class="glyphicon glyphicon-minus"></span>
+											</button>
+										</span> <input id="memberSupport" type="text"
+											class="form-control text-center" value="0"> <span
+											class="input-group-btn">
+											<button class="btn btn-default" data-dir="up">
+												<span class="glyphicon glyphicon-plus"></span>
+											</button>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="input-group number-spinner">
+										<span class="input-group-btn">
+											<button class="btn btn-default" data-dir="dwn">
+												<span class="glyphicon glyphicon-minus"></span>
+											</button>
+										</span> <input id="memberMloss" type="text"
+											class="form-control text-center" value="0"> <span
+											class="input-group-btn">
+											<button class="btn btn-default" data-dir="up">
+												<span class="glyphicon glyphicon-plus"></span>
+											</button>
+										</span>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="other-content">
+						
+						<button class="btn btn-primary" onclick="addPoint(this);">등록</button>
+						<button class="btn btn-primary modalClose" onclick="detailInfoClose();">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="teamAddrSearch input-group margin-bottom-9">
+					<input size="60" maxlength="255" class="form-control"
+						placeholder="주요 활동지역" required="required" name="mbaseAddr"
+						id="mbaseAddress" type="text" />
+					 <span class="input-group-addon">
+					 	<button id="searchAddr" class="glyphicon glyphicon-tag mycolor"></button> 
+					 	<button id="locationUpdate" class="glyphicon glyphicon-floppy-saved mycolor"></button> 
+					 </span>
+				</div>
+				<div id="map" style="width: 100%; height: 400px;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="section"></footer>
+<div class="modal fade" id="profileModal"></div>
+
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/common.js"></script>
+<script src="/soccer-kick/js/commons/socket.io.js"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/js/commons/alert.js"></script>
+<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=ef3f72b10f924dd622d250e332052626"></script>
+<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script src="/soccer-kick/js/myteam/teaminfo/thumbnail-slider.js" type="text/javascript"></script>
+<script src="/soccer-kick/js/myteam/teaminfo/tooltip.js" type="text/javascript"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/soccer-kick/js/myteam/teaminfo/manageMember.js"></script>
+</body>
+</html>

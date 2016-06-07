@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/soccer-kick/lib/jquery/jquery.min.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<!--  <script src="../Pagination/jquery.easyPaginate.js" type="text/javascript"></script> -->
+
+<!-- include libries(jQuery, bootstrap, fontawesome) -->
+<link rel="stylesheet" href="/soccer-kick/lib/bootstrap/css/bootstrap.css">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	margin-top: 2%
+}
+</style>
+
+</head>
+<body>
+	<h1 style="font-weight: bold; font-family: fantasy;">팀 게시판</h1>
+	<hr />
+	<form action="form1" class="form-horizontal">
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-md-offset-9 col-md-3">
+				<div class="input-group">
+					<input class="form-control" id="system-search" name="q" placeholder="검색" required="required">
+					<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<br />
+		
+		<div class="row">
+			<div class="col-md-12">
+				<table  id="listTable" class="table table-list-search table-hover">
+					<tr class="info">
+						<th style="width: 8%; text-align: center;">번호</th>
+						<th style="width: 57%; text-align: center;">제목</th>
+						<th style="width: 10%; text-align: center;">글쓴이</th>
+						<th style="width: 15%; text-align: center;">날짜</th>
+						<th style="width: 10%; text-align: center;">조회수</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-md-offset-11">
+			<button id="newBtn" type="button" class="btn btn-primary">글쓰기</button>
+		</div>
+		
+		<!--  pagination -->
+		<div class="col-md-offset-5">
+		<nav>
+		<ul class="pagination">
+		<li><a href="#" aria-label="Previous"> <span
+		aria-hidden="true">&laquo;</span>
+		</a></li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+		<li><a href="#" aria-label="Next"> <span
+		aria-hidden="true">&raquo;</span>
+		</a></li>
+		</ul>
+		</nav>
+		</div>
+		
+	</div>
+	</form>
+	<script type="text/javascript">
+<!-- SEARCH -->
+$(document).ready(function() {
+	var activeSystemClass = $('.list-group-item.active');
+
+	$('#system-search').keyup(function() {
+		var that = this;
+		var tableBody = $('.table-list-search tbody');
+		var tableRowsClass = $('.table-list-search tbody tr');
+		$('.search-sf').remove();
+		tableRowsClass.each(function(i, val) {
+
+			var rowText = $(val).text().toLowerCase();
+			var inputText = $(that).val().toLowerCase();
+			if (inputText != '') {
+				$('.search-query-sf').remove();
+				tableBody.prepend('<tr class="search-query-sf"></tr>');
+			} else {
+				$('.search-query-sf').remove();
+			}
+
+			if (rowText.indexOf(inputText) == -1) {
+				tableRowsClass.eq(i).hide();
+
+			} else {
+				$('.search-sf').remove();
+				tableRowsClass.eq(i).show();
+			}
+		});
+		if (tableRowsClass.children(':visible').length == 0) {
+			tableBody.append('<tr class="search-sf"></tr>');
+		}
+	});
+});
+
+
+<!--ListBoard -->
+$.getJSON('/soccer-kick/TeamBoard/ajax/list.do', function(resultObj){
+	var table = $("#listTable");
+
+	for (var board of resultObj.data) {
+		$("<tr>")
+		.html("<td style='width: 8%; text-align: center;'>" + board.bno +"</td>"
+				+"<td><a class='detailLnk' href='#' boardNo='" + board.bno +"'> " +  board.btitle + "</a></td>" 
+				+"<td style='width: 10%; text-align: center;'>" + board.mname + "</td>"
+				+"<td style='width: 15%; text-align: center;'>" + board.bregDate + "</td>"
+				+"<td style='width: 10%; text-align: center;'>" + board.bviewCnt + "</td>")
+				.appendTo(table);
+	}
+	$("a.detailLnk").click(clickDetailLnk);
+})
+.fail(function(){
+	
+});
+	
+	
+	$("#newBtn").click(function () {
+		location.href="form.html?no=-1";
+	});
+
+	function clickDetailLnk(event) {
+		event.preventDefault();
+		location.href="detail.html?no=" + $(event.target).attr("boardNo");
+	}
+</script>
+</body>
+</html>

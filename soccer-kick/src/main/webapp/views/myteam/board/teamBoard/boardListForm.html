@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--  -----------------------------------------------------------------------------------------------------------  -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/animate.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/alert.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/alert/Icomoon/style.css" rel="stylesheet" type="text/css">
+<!-- DC Pagination CSS -->
+<link type="text/css" rel="stylesheet" href="http://cdn.dcodes.net/2/pagination/css/dc_pagination.css" />
+<!--  -----------------------------------------------------------------------------------------------------------  -->
+	
+<title>커뮤니티</title>
+<style type="text/css">
+body {
+	margin-top: auto;
+}
+.pagination> li > a{
+	float: none; 
+}
+<!-- Input File -->
+</style>
+</head>
+<body>
+<div id="header" class="my-header navbar navbar-default navbar-static-top"></div>
+	<form action="list.do" class="form-horizontal">
+		<div class="container" style="margin-top:50px;">
+			<div class="row">
+				<div class="col-md-offset-9 col-md-3">
+					<div class="input-group">
+						<input class="form-control" id="system-search" name="q" placeholder="검색" required="required">
+						<span class="input-group-btn">
+						<button type="submit" class="btn btn-info">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<br />
+			
+			<div class="row">
+				<div class="col-md-12">
+					<table  id="listTable" class="table table-bordered table-list-search table-hover">
+					<thead>
+							<tr class="info">
+								<th style="width: 5%; text-align: center;">번호</th>
+								<th style="width: 57%; text-align: center;">제목</th>
+								<th style="width: 10%; text-align: center;">글쓴이</th>
+								<th style="width: 15%; text-align: center;">날짜</th>
+								<th style="width: 8%; text-align: center;">조회수</th>
+							</tr>
+					</thead>
+					<tbody></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-offset-11">
+				<button id="newBtn" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">글쓰기</button>
+			</div>
+			
+			<!-- DC Pagination:A7 Start -->
+			<nav>
+				<div class="col-md-offset-4">
+					<ul class="dc_pagination dc_paginationA dc_paginationA07"></ul>
+				</div>
+			</nav>
+		</div>
+	</form>
+		<!-- DC Pagination:A7 End -->	
+<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel"
+						style="font-weight: bold;">새 글쓰기</h4>
+				</div>
+				<div class="modal-body">
+					<form id="bForm" enctype="multipart/form-data" method="post">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">제목</label> <input
+								type="text" class="form-control" id="btitle" name="btitle">
+						</div>
+						<div class="form-group input-group">
+							<input type="text" class="form-control" id="file_path"
+								placeholder="Select File......"> <span
+								class="form-group input-group-btn">
+								<button class="btn btn-info" type="button" id="file_Attach">
+									<i class="fa fa-search"></i>Select File
+								</button> <input type="file" class="hidden" id="file" name="file">
+							</span>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label">내용</label>
+							<textarea id="bcontent" class="form-control2" rows="8" cols="8"
+								name="bcontent"></textarea>
+						</div>
+					</form>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="cancleBtn"
+							data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-info" id="regist"
+							data-dismiss="modal">등록</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer" class="section"></footer>
+	<div class="modal fade" id="profileModal"></div>
+<!--  ---------------------------------------------------------------------------------------------  -->
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/commons/socket.io.js"></script>
+<script src="/soccer-kick/js/common.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/soccer-kick/js/commons/alert.js"></script>
+<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script src="/soccer-kick/js/myteam/board/teamBoard/teamBoard.js"></script>
+<!--  ---------------------------------------------------------------------------------------------  -->
+</body>
+</html>

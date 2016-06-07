@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet"
+	type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css"
+	rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet"
+	type="text/css">
+<link href="/soccer-kick/css/profileModal/profileModal.css"
+	rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/userForm/userForm.css" rel="stylesheet"
+	type="text/css">
+<style type="text/css">
+
+.drag {
+	width: 32px;
+	height: 32px;
+	border-radius: 0.5em;
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+}
+
+#drag-me::before {
+	content: "#" attr(id);
+	font-weight: bold;
+}
+
+.drag2 {
+	background: red;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="my-header navbar navbar-default navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#navbar-ex-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"><span>PROJECT NAME</span></a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="/soccer-kick/views/home/home.html"
+						style="text-decoration: none;">Home</a></li>
+					<li class="active"><a href="">Teams</a></li>
+					<li><a href="#">Create Team</a></li>
+					<li><a href="#">My Team</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"> <img id="profileThumnail"
+							src="/soccer-kick/images/commons/baseUserIcon.png"
+							style="width: 15px; height: 15px;" />&nbsp; <strong>Username</strong>
+							<span class="glyphicon glyphicon-chevron-down"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="navbar-login">
+									<div class="row">
+										<div class="col-lg-4">
+											<p class="text-center">
+												<img id="profileThumnail2"
+													src="/soccer-kick/images/commons/baseUserIcon.png"
+													style="width: 87px; height: 87px;" />
+											</p>
+										</div>
+										<div class="col-lg-8">
+											<p class="text-left">
+												<strong>Username</strong>
+											</p>
+											<p class="text-left small">useremail@gmail.com</p>
+											<p class="text-left">
+												<a href="" class="btn btn-primary btn-block btn-sm"
+													data-toggle="modal" data-target="#profileModal">Show/Edit
+													Profile</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="navbar-login navbar-login-session">
+									<div class="row">
+										<div class="col-lg-12">
+											<p>
+												<a href="#" class="btn btn-danger btn-block">Log Out</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container"
+			style="background: #D5D5D5; border-radius: 5px;">
+			<h1>전략</h1>
+			<form class="form-horizontal" role="form">
+				<div class="row">
+					<div class="col-md-5" id="players">
+					<!-- 355 473 -->
+						<div style="width: 400px; height: 530px;">
+							<canvas id="groundCanvas" width="400px;" height="530px;"
+								style="border: 1px solid tomato; background-size: 400px 530px; background-image: url('../images/sField.png')"></canvas>
+							<!-- y 간격 67.5 --> 
+							<!-- y 최상단 : -515.5,  최하단 : -74.5 -->
+							<!-- x 제일 왼쪽 35.5 제일 오른쪽 : 287.5 -->
+							<div id="player1" class="draggable drag" data-x="100" data-y="-74.5"
+								style="transform: translate(100px, -74.5px); background-image: url('../images/3.jpg');  background-size: 100%, 100%;">1-1</div>
+							<div id="player2" class="draggable drag" data-x="100" data-y="-255"
+								style="transform: translate(100px, -255px); background-image: url('../images/2.png'); background-size: 100%, 100%;">2-2</div>
+							<div id="player3" class="draggable drag" data-x="100" data-y="-255"
+								style="transform: translate(100px, -255px); background-image: url('../images/3.png'); background-size: 100%, 100%;">3-3</div>
+							<div id="player4" class="draggable drag" data-x="35" data-y="-300"
+								style="transform: translate(35px, -300px); background-image: url('../images/3.png'); background-size: 100%, 100%;">4-4</div>
+							<div id="player5" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">5-5</div>
+							<div id="player6" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">6-6</div>
+							<div id="player7" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">7-7</div>
+							<div id="player8" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">8-8</div>
+							<div id="player9" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">9-9</div>
+							<div id="player10" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">10-10</div>
+							<div id="player11" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">11-11</div>
+							<div id="player12" class="draggable drag" style="background-image: url('../images/3.png'); background-size: 100%, 100%;">12-12</div>
+							
+							<div id="drag-5" class="draggable drag drag2" data-x="-35" data-y="-610"
+								style="transform: translate(-35px, -610px); background-image: url('../images/devil.png'); background-size: 100%, 100%;">1-1</div>
+							<div id="drag-5" class="draggable drag drag2" data-x="0" data-y="-537"
+								style="transform: translate(0px, -537px); background-image: url('../images/devil.png'); background-size: 100%, 100%;">2-2</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">3-3</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">4-4</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">5-5</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">6-6</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">7-7</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">8-8</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">9-9</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">10-10</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">11-11</div>
+								<div id="drag-5" class="draggable drag drag2"
+								style="background-image: url('../images/devil.png'); background-size: 100%, 100%;">12-12</div>
+						</div>
+					</div>
+					<br />
+
+					<div class="col-md-7">
+						<a class="btn btn-primary">Pencil</a> <a class="btn btn-primary"
+							id="captureBtn">Capture</a>
+
+						<button type="submit" class="btn btn-default">Submit</button>
+
+						<button>22</button>
+						<hr />
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" id="strategyTitle"
+									placeholder="Strategy Title">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<textarea class="form-control2" rows="15"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<span id="captureResults"> </span>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<footer class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>Team org name</h2>
+					<p>COPYRIGHT 2016 JAVA-77 TEAM ORG NAME. ALL COPYRIGHTS
+						RESERVED CONTACT BITCAMP Corp.</p>
+				</div>
+				<div class="col-sm-6">
+					<p class="text-info text-right">
+						<br> <br>
+					</p>
+					<div class="row">
+						<div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+							<a href="#"><i class="fa fa-3x fa-fw text-inverse fa-youtube"></i></a>
+							<a href="#"><i
+								class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a> <a href="#"><i
+								class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 hidden-xs text-right">
+							<a href="#"><i class="fa fa-2x fa-fw fa-youtube"></i></a> <a
+								href="#"><i class="fa fa-2x fa-facebook fa-fw"></i></a> <a
+								href="#"><i class="fa fa-2x fa-fw fa-github"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<div class="modal fade" id="profileModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title text-muted">Profile/Info</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel with-nav-tabs panel-default">
+								<div class="panel-heading">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#tab1default"
+											data-toggle="tab">Username Profile</a></li>
+										<li><a href="#tab2default" data-toggle="tab">Myteam
+												Info</a></li>
+									</ul>
+								</div>
+								<div class="panel-body">
+									<div class="tab-content">
+										<div class="tab-pane fade in active" id="tab1default">
+											<form class="form-horizontal" role="form">
+												<div class="row">
+													<div class="col-md-5">
+														<div class="fileWrapper">
+															<div class="photoBox" id="photoBox"
+																style="background-image: url('/soccer-kick/images/commons/baseUserIcon.png');"></div>
+															<input type="file" class="fileBox" name="profilePhoto"
+																onchange="selectFile(event)">
+														</div>
+														<br>
+													</div>
+													<div class="col-md-7">
+														<div class="form-group">
+															<div class="col-sm-12">
+																<div class="input-group margin-bottom-4">
+																	<span class="input-group-addon" contenteditable="true">
+																		<i class="glyphicon glyphicon-envelope mycolor"></i>
+																	</span> <input size="60" maxlength="255" class="form-control"
+																		name="UserRegistration[email]"
+																		id="UserRegistration_email" type="email"
+																		disabled="disabled" value="useremail@gmail.com">
+																</div>
+																<div class="input-group margin-bottom-4">
+																	<span class="input-group-addon" contenteditable="true">
+																		<i class="glyphicon glyphicon-user mycolor"></i>
+																	</span> <input size="60" maxlength="255" class="form-control"
+																		name="UserRegistration[fname]"
+																		id="UserRegistration_fname" type="text"
+																		value="User First Name" disabled="disabled">
+																</div>
+																<div class="input-group margin-bottom-4">
+																	<span class="input-group-addon"> <i
+																		class="glyphicon glyphicon-phone mycolor"></i>
+																	</span> <input size="60" maxlength="255" class="form-control"
+																		placeholder="Contact Number(000.0000.000)"
+																		required="required"
+																		name="UserRegistration[contactnumber]"
+																		id="UserRegistration_contactnumber" type="text"
+																		value="000.0000.0000">
+																</div>
+																<div class="input-group margin-bottom-4">
+																	<input size="60" maxlength="255" class="form-control"
+																		placeholder="Address" required="required"
+																		name="UserRegistration[address]" id="address"
+																		type="text"> <span class="input-group-addon">
+																		<button id="searchAddrBtn"
+																			class="glyphicon glyphicon-tag mycolor"></button>
+																	</span>
+																</div>
+																<div class="input-group margin-bottom-4">
+																	<input size="100" maxlength="255" class="form-control"
+																		placeholder="Detail Address" required="required"
+																		name="UserRegistration[detailAddress]"
+																		id="detailAddress" type="text">
+																</div>
+																<div class="input-group margin-bottom-4">
+																	<div class="has-success radio">
+																		<label> <input type="radio" name="position"
+																			id="FW" value="FW" checked="checked">FW
+																		</label> <label> <input type="radio" name="position"
+																			id="MF" value="MF">MF
+																		</label> <label> <input type="radio" name="position"
+																			id="DF" value="DF">DF
+																		</label> <label> <input type="radio" name="position"
+																			id="PK" value="PK">PK
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<hr>
+												<div class="form-group">
+													<div class="col-sm-offset-3 col-sm-6">
+														<button type="submit" class="btn btn-block btn-default">
+															<i class="fa fa-star fa-fw"></i>Update
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="tab-pane fade" id="tab2default">
+											<div class="row">
+												<div class="col-md-6">
+													<img
+														src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+														class="img-responsive">
+												</div>
+												<div class="col-md-6">
+													<div class="panel panel-primary">
+														<div class="panel-heading">
+															<h1 class="panel-title">My Score</h1>
+														</div>
+														<div class="panel-body">
+															<ul class="list-group">
+																<li class="list-group-item">참여 횟수 <span
+																	class="badge">42</span>
+																</li>
+																<li class="list-group-item">골 <span class="badge">10</span>
+																</li>
+																<li class="list-group-item">도움 <span class="badge">22</span>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<h1 class="text-primary">Real Madrid</h1>
+													<div class="row">
+														<div class="col-md-8">
+															<h4 class="text-primary">Leader : Ronaldo</h4>
+														</div>
+														<div class="col-md-4">
+															<a class="btn btn-primary">Withdrawal</a>
+														</div>
+													</div>
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>Area</th>
+																<th>Members</th>
+																<th>Since</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Seoul</td>
+																<td>20 / 24</td>
+																<td>10.10.11</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+	<script src="/soccer-kick/js/commons/header.js"></script>
+	<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+	<script
+		src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+	<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+	<script
+		src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+	<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+	<script src="/soccer-kick/js/profileModal/profileModal.js"></script>
+	<script src="/soccer-kick/lib/interact/interact.js"></script>
+	<script src="/soccer-kick/lib/html2canvas/html2canvas.js"></script>
+	<script>
+		var groundx;
+		var groundy;
+		$(document).ready(function() {
+			var cObj = document.getElementById("groundCanvas");
+			var gPos = $("#drag-1").offset();
+			console.log("left : " + gPos.left);
+			console.log("top : " + gPos.top);
+
+			/* 브라우져에서 캔버스 위치 x, y */
+			groundx = gPos.left; //48		
+			groundy = gPos.top // 104
+
+			//캔버스 이미지의 크기는 355 473 이므로 355 + x, 473 + y;
+
+			var context = cObj.getContext("2d");
+			//선을 그리기 시작할거야..
+			context.beginPath();
+			//최초 위치로 이동
+			context.moveTo(0, 0);
+
+			context.lineTo(355, 473);
+			//선을 긋기
+			context.stroke();
+		});
+	</script>
+
+	<script type="text/javascript">
+		// target elements with the "draggable" class
+		interact('.draggable').draggable({
+			// enable inertial throwing
+			inertia : true,
+			// keep the element within the area of it's parent
+			restrict : {
+				restriction : "parent",
+				endOnly : true,
+				elementRect : {
+					top : 0,
+					left : 0,
+					bottom : 1,
+					right : 1
+				}
+			},
+			// enable autoScroll
+			autoScroll : true,
+
+			// call this function on every dragmove event
+			onmove : dragMoveListener,
+		});
+
+		function dragMoveListener(event) {
+			var target = event.target,
+			// keep the dragged position in the data-x/data-y attributes
+			x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx, y = (parseFloat(target
+					.getAttribute('data-y')) || 0)
+					+ event.dy;
+
+			// translate the element
+			target.style.webkitTransform = target.style.transform = 'translate('
+					+ x + 'px, ' + y + 'px)';
+
+			// update the posiion attributes
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		}
+
+		// this is used later in the resizing and gesture demos
+		window.dragMoveListener = dragMoveListener;
+	</script>
+	<script>
+		//capture
+		$("#captureBtn").click(function() {
+			html2canvas(
+				$("#players"),
+				{
+					useCORS : true,
+					proxy : '/etc/proxy_image',
+					onrendered : function(canvas) {
+						var image = canvas.toDataURL().toString();
+						$("#captureResults").html($("#captureResults").html() + '<img src=' + image + ' style="width: 126px; height: 126px;">');
+					}
+				});
+			return false;
+		});
+	</script>
+	<script>
+		window.onload = function() {
+			
+		}
+	</script>
+</body>
+</html>

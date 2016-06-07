@@ -1,0 +1,340 @@
+
+
+.team-wrap {
+	width: 100%;
+	height: 120px;
+	position: relative;
+	display: inline-block;
+}
+
+.team-box {
+	margin: 0px auto;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	border: 4px solid #e5e5e6;
+	position: absolute;
+	top: 0px;
+	z-index: 1;
+	background-color: white;
+	background-size: 100% 100%;
+}
+.teamContent-box {
+	width: 100%;
+	border: 1px solid #d8d8d8;
+	position: absolute;
+	top: 45px;
+	z-index: 0;
+	border-radius: 5px;
+	border-bottom: 1px solid #a8a8a8;
+/* 	box-shadow: 1px 1px 3px #a7a7a7; */
+	background-color: white;
+}
+
+.team-title {
+	text-align: center;
+/* 	padding-top: 40px; */
+	height: auto;
+	color: #222;
+	font-size: 24px;
+	padding-bottom: 5px;
+	background-color: #E3E8E7;
+	background: #000000 url(http://themesground.com/modern/demo1/HTML/img/intro-bg.png) repeat top left;
+	color: #fff;
+}
+
+#teamName {
+	font-weight: bold;
+}
+
+#teamContent {
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+div.col-md-3 {
+	margin: 0;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+.col-md-3 img {
+	
+}
+
+#effect {
+	text-align: auto;
+}
+
+#effect img {
+	/* 	border-radius: 10px; */
+	width: 100%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.fontCus {
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: -1px 0 #470CF7, 0 4px #470CF7, 1px 0 #470CF7, 0 -1px
+		#470CF7;
+	text-align: center;
+	cursor: pointer;
+	background: gray;
+	margin-top: 10px;
+	/* 	border-radius: 10px; */
+}
+
+.fontCus:hover {
+	background: blue;
+}
+
+.thumb:hover {
+	opatity: 0.5;
+}
+
+.colTitle {
+	margin-top: 30px;
+	width: 100%;
+	height: 200px;
+	position: absolute;
+	left: 0px;
+	text-align: center;
+	font-size: 20px;
+	color: gray;
+/* 	text-shadow: 1px 1px 3px #222; */
+	font-weight: bold;
+	line-height: 70px;
+/* 	background-image: url("./images/titleBack.jpg"); */
+	background-size: 100% 100%;
+	/* 	border-radius: 10px; */
+	color: #000000;
+}
+
+thumb i {
+	cursor: pointer;
+	color: skyblue;
+}
+
+.thumb div:eq(0) {
+	margin-bottom: 20px;
+}
+
+.pointTb {
+	border: 1px solid black;
+}
+
+.detailInfoDiv p {
+	cursor: pointer;
+}
+
+.detailInfoDiv p:hover {
+	background: red;
+}
+
+.pointTb tr td {
+	width: 130px;
+	text-align: center;
+}
+
+.detailTb tr td {
+	width: 150px;
+}
+
+.posi {
+	padding: 5px;
+}
+
+.card-wrap {
+	width: 402px;
+	height: 365px;
+	position: relative;
+	display: inline-block;
+	margin: 10px;
+}
+
+.photo-box {
+	margin: 0px auto;
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	border: 4px solid #e5e5e6;
+	position: absolute;
+	left: 158px;
+	top: 0px;
+	z-index: 1;
+	background-color: white;
+	background-size: 100% 100%;
+}
+
+.content-box {
+	width: 100%;
+	height: 320px;
+	border: 1px solid #d8d8d8;
+	position: absolute;
+	top: 45px;
+	z-index: 0;
+	border-radius: 5px;
+	border-bottom: 1px solid #a8a8a8;
+/* 	box-shadow: 1px 1px 3px #a7a7a7; */
+	background-color: white;
+}
+
+.content-title {
+	text-align: center;
+	padding-top: 40px;
+	height: 80px;
+	color: #222;
+	font-size: 24px;
+	padding-bottom: 5px;
+	background-color: #E3E8E7;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.content {
+	padding: 10px;
+	width: 100%;
+	height: 180px;
+	/* 		-webkit-transition : all 0.5s; */
+}
+
+/* 	.content:hover { */
+/* 		-webkit-filter: blur(2px) grayscale(80%);; */
+/* 	} */
+.other-content {
+	background-color: #E3E8E7;
+	width: 100%;
+	height: 56px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	text-align: right;
+	padding-right: 10px;
+	line-height: 56px;
+}
+
+
+
+.container-widget .panel {
+    margin-bottom: 15px;
+    border-radius: 0px;
+    border: 1px #e6e9ee solid;
+}
+
+.panel-info {
+    background: #3f51b5 url(http://themesground.com/modern/demo1/HTML/img/intro-bg.png) repeat top left;
+    color: #fff;
+}
+
+.panel-success {
+    background: #1ab394 url(http://themesground.com/modern/demo1/HTML/img/intro-bg.png) repeat top left;
+    color: #fff;
+}
+
+.panel-widget {
+    overflow: hidden;
+    border: none;
+}
+
+.panel .panel-title {
+    color: #58666e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0px;
+}
+.panel-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #58666e;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    margin: -20px;
+    background: #fff;
+    margin-bottom: 5px;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    letter-spacing: 1px;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+.basic-list {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Basic List */
+.basic-list {
+  margin-bottom: 0;
+  padding: 0;
+}
+.basic-list li {
+  display: block;
+  position: relative;
+  padding: 12px 0;
+}
+
+.basic-list li:last-child {
+  border-bottom: none;
+}
+.basic-list .right {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  padding: 3px 6px;
+  font-weight: 600;
+}
+
+/* Image List */
+.image-list li {
+  padding-left: 50px;
+}
+.image-list .img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  border-radius: 0px;
+}
+.image-list .desc {
+  font-size: 12px;
+  opacity: 0.8;
+  display: block;
+}
+
+
+
+.basic-list li {
+	cursor: pointer;
+};
+
+.basic-list li:hover {
+	border: 1px solid red;
+	background: red;
+}
+
+
+#mcTooltip>.mcTooltipInner {
+	height : 134px!important;
+}
+
+#mcTooltip>.mcTooltipInner>img {
+	width : 200px!important;
+	height : 130px!important;
+}

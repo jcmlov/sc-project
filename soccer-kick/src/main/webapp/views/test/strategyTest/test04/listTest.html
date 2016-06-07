@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="/soccer-kick/css/commons/header.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/lib/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/my-bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/profile.css" rel="stylesheet" type="text/css">
+<link href="/soccer-kick/css/commons/userForm.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+a:hover {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.btn {
+	transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+}
+
+.btn-read-more {
+	padding: 5px;
+	text-align: center;
+	border-radius: 0px;
+	display: inline-block;
+	border: 2px solid #662D91;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 12px;
+	color: #662D91;
+}
+
+.btn-read-more:hover {
+	color: #FFF;
+	background: #662D91;
+}
+
+.post {
+	border-bottom: 1px solid #DDD
+}
+
+.post-title {
+	color: #662D91;
+}
+
+.post .glyphicon {
+	margin-right: 5px;
+}
+
+.post-header-line {
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	padding: 5px 0px 5px 15px;
+	font-size: 12px;
+}
+
+.post-content {
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+<div id="header"
+	class="my-header navbar navbar-default navbar-static-top"></div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="input-group col-md-10 col-md-offset-1">
+			    <div class="input-group-btn search-panel">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span id="search_concept">Title</span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#" class="searchIndex"><i class="fa fa-angle-double-right"></i>Title</a></li>
+						<li><a href="#" class="searchIndex"><i class="fa fa-angle-double-right"></i>Writer</a></li>
+						<li><a href="#" class="searchIndex"><i class="fa fa-angle-double-right"></i>Content</a></li>
+					</ul>
+				</div>
+				<input type="hidden" name="search_param" value="name" id="search_param">		 
+				<input type="text" class="form-control" name="q" placeholder="Search.." id="search_key" value="">
+				<span class="input-group-btn">
+						<a class="btn btn-default text-muted" href="#" title="Clear"><i class="glyphicon glyphicon-remove"></i></a>
+						<button class="btn btn-info" type="submit">  Search  </button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div id="listDiv" class="col-md-8 col-md-offset-2"></div>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<a class="btn btn-block btn-default go-top">TOP</a>
+			</div>
+			<div class="col-md-6">
+				<a id="road-list" class="btn btn-block btn-default">LOAD MORE</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="section"></footer>
+<div class="modal fade" id="profileModal"></div>
+
+<script src="/soccer-kick/lib/jquery/jquery.js"></script>
+<script src="/soccer-kick/js/common.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/soccer-kick/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/soccer-kick/js/commons/headerFooterModal.js"></script>
+<script src="/soccer-kick/lib/bootstrap/js/bootstrap.js"></script>
+<script src="/soccer-kick/lib/jquery-throttle-debounce/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/soccer-kick/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/soccer-kick/lib/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
+<script src="/soccer-kick/js/commons/smooth-scroll.js"></script>
+<script>
+/* btype, tno 변수로 잡아서 해야 할듯. 일단 테스트 */
+$.getJSON(contextRoot + "/board/list.do?btype=S&tno=1", function(resultObj) {
+	console.log(resultObj.data);
+	var boardList = "";
+	for (var board of resultObj.data) {
+		boardList += '<div class="row">                                                                                                                           ';
+		boardList += '	<div class="col-md-12 post">                                                                                                              ';
+		boardList += '		<div class="row">                                                                                                                     ';
+		boardList += '			<div class="col-md-12">                                                                                                           ';
+		boardList += '				<h4>                                                                                                                          ';
+		boardList += '					<strong><a href="#" class="detailLink" boardNo="' + board.bno + '">' + board.btitle + '</a></strong>					  ';
+		boardList += '				</h4>                                                                                                                         ';
+		boardList += '			</div>                                                                                                                            ';
+		boardList += '		</div>                                                                                                                                ';
+		boardList += '		<div class="row">                                                                                                                     ';
+		boardList += '			<div class="col-md-12 post-header-line">                                                                                          ';
+		boardList += '				<span class="glyphicon glyphicon-user"></span>by <a>' + board.bwriter + '</a>                                                 ';
+		boardList += '				| <span class="glyphicon glyphicon-calendar"> </span><a>' + board.bmodDate + '</a>											  ';
+		boardList += '					 | <span class="glyphicon glyphicon-comment"></span><a>' + board.bviewCnt + ' View Count</a>                              ';
+		boardList += ' 						| <i class="icon-share"></i><a>39 Comments</a>																	      ';
+		boardList += '			</div>                                                                                                                            ';
+		boardList += '		</div>                                                                                                                                ';
+		boardList += '		<div class="row post-content">                                                                                                        ';
+		boardList += '			<div class="col-md-3">                                                                                                            ';
+		boardList += '				<a> <img                                                                                                                      ';
+		boardList += '					src="' + board.bwriterPhotoPath + '" alt="" class="img-responsive">                                                       ';
+		boardList += '				</a>                                                                                                                          ';
+		boardList += '			</div>                                                                                                                            ';
+		boardList += '			<div class="col-md-9">                                                                                                            ';
+		boardList += '				<p>' + board.bcontent + '</p>                                                                                                 ';
+		boardList += '				<p>                                                                                                                           ';
+		boardList += '					<a class="btn btn-read-more detailLink"                                                                                   ';
+		boardList += '						href="#" boardNo="' + board.bno + '">View More</a>                                                                    ';
+		boardList += '				</p>                                                                                                                          ';
+		boardList += '			</div>                                                                                                                            ';
+		boardList += '		</div>                                                                                                                                ';
+		boardList += '	</div>                                                                                                                                    ';
+		boardList += '</div>                                                                                                                                      ';
+		boardList += '<br/>                                                                                                                                      ';
+	}
+	$("#listDiv").html($("#listDiv").html() + boardList);
+	$("a.detailLink").click(clickDetailLink);
+});
+
+function clickDetailLink(event) {
+	event.preventDefault();
+	location.href = "sDetail.html?btype=S&bno="
+			+ $(event.target).attr("boardNo");
+}
+
+$("a.searchIndex").click(function(event) {
+	event.preventDefault();
+	$("#search_concept").html($(event.target).text());
+});
+
+$("a.text-muted").click(function(event) {
+	event.preventDefault();
+	$("#search_key").val("");
+});
+</script>
+</body>
+</html>

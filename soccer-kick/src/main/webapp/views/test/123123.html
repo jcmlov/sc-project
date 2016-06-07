@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+  <link rel="stylesheet" href="resources/views/test/normalize.css" />
+ 
+  <!-- Le styles -->
+  <style>
+  body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+  }
+  #canvas {
+    position: relative;
+  }
+  img {
+    position: relative;
+  }
+  </style>
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/2.3.1/simplex/bootstrap.min.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <script type="text/javascript" src="resources/views/test/jquery-2.2.0.js"></script>
+  <script type="text/javascript">
+  //마우스가 눌렸는지 상태를 저장하는 변수
+  var isPress = false;
+  
+  $(function() {
+    //이벤트 설정
+
+    var canvas = document.getElementById("canvas");
+    // canvas에 그림그리는 영역 추출
+    var context = canvas.getContext("2d");
+    
+    $(canvas).on({
+      mousedown : function(event) {
+        isPress = true;
+        
+        //canvas 클릭된 좌표 얻기
+        var pos = $(this).offset();
+        var x = event.pageX - pos.left;
+        var y = event.pageY - pos.top;
+        
+        //선을 그리기 시작할거야..
+        context.beginPath();
+        //최초 위치로 이동
+        context.moveTo(x, y);
+        
+      },
+      mouseup : function(event) {
+        isPress = false;
+      },
+      mousemove : function(event) {
+        var pos = $(this).offset();
+        var x = event.pageX - pos.left;
+        var y = event.pageY - pos.top;
+        
+        //마우스가 눌렸을 때
+        if(isPress) {
+          context.lineTo(x, y);
+          //선을 긋기
+          context.stroke();
+        }
+      }
+    });
+    var image = new Image();
+    image.onload = function() {
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    }
+    image.src = "resources/views/test/field.jpg";
+  })
+</script>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>test content</h1>
+    <button id="startBtn">screenshot jpeg</button>
+    <h2>output image by jpeg </h2>
+
+    <div>
+      <canvas id="canvas" width="700" height="400" 
+      style="border: 1px solid tomato;"></canvas>
+    <img src="" id="area" />
+  </div>
+  <div id="target2"></div>
+  </div> <!-- /container -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="resources/views/test/html2image.js"></script>
+  <script src="resources/views/test/html2canvas.js"></script>
+  <script>
+    // $(function(){
+    //   $('#startBtn').on('click',function(event){
+    //    html2image(document.body,function(dataURI){
+    //     $('#area').attr('src',dataURI);
+    //    });
+    //  });
+    // });
+    $(function(){
+      $('#startBtn').on('click',function(event){
+        html2canvas($("#canvas"), {
+          onrendered: function(canvas) {
+            var img = canvas.toDataURL().toString();
+            $("#target2").html('<img src=' + img + '>'); // capture ³»¿ëÀÌ º¸¿©Áü
+            //$('#area').attr("src",img);
+          },
+          imageType:'jpeg'
+        });
+      });
+    });
+  </script>
+</body>
+</html>

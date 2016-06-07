@@ -1,0 +1,16 @@
+#typo {
+	margin: 0;
+	padding: 0;
+	background-color: skyblue;
+	font-weight: bold;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+#typo .inner {
+	position: relative;
+	font-size:50px;
+	margin: 0 auto;
+}

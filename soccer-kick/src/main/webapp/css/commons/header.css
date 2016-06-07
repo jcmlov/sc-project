@@ -1,0 +1,31 @@
+.navbar-login {
+	width: 305px;
+	padding: 10px;
+	padding-bottom: 0px;
+}
+
+.navbar-login-session {
+	padding: 10px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+.icon-size {
+	font-size: 87px;
+}
+
+.section-myset {
+  background-color: #222222;
+  color: white;
+}
+.my-header {
+  position: absolute;
+  min-height: 50px;
+  margin-bottom: 0px;
+  border: 1px solid transparent;
+  width: 100%;
+}
+.my-header.sticky {
+  position: fixed;
+  top: 0;
+}
